@@ -1,0 +1,1316 @@
+import {
+  Student,
+  Teacher,
+  SchoolClass,
+  AttendanceRecord,
+  AcademicRecord,
+  Book,
+  StudyMaterial,
+  Donation,
+  FinancialTransaction,
+  Announcement,
+  SchoolEvent,
+  NewsArticle,
+  GalleryItem,
+  SchoolSettings
+} from '../types';
+
+export const INITIAL_SETTINGS: SchoolSettings = {
+  id: 'main',
+  schoolName: 'PRIYOFUL',
+  tagline: 'Give Every Child a Chance to Learn',
+  phone: '+880 1712-345678',
+  email: 'hello@priyoful.org',
+  address: 'Section 11, Mirpur Low-Income Settlement, Dhaka-1216, Bangladesh',
+  bKashNumber: '+880 1712-345678 (Personal / Merchant)',
+  nagadNumber: '+880 1812-345678',
+  bankDetails: 'Priyoful Education Foundation, A/C: 2050123456789, Dutch-Bangla Bank Ltd, Mirpur Branch',
+  activeAcademicYear: '2026',
+  aboutMission: 'To ensure free, dignified, high-quality basic primary education (Class 1 to 5), nutrition, and moral mentorship for every underprivileged child living in low-income settlement communities.',
+  aboutVision: 'A world where no child is deprived of education because of poverty, fostering self-reliance, compassion, and human dignity.',
+  totalDonationTarget: 250000,
+  statsOverride: {
+    studentsCount: 145,
+    teachersCount: 12,
+    volunteersCount: 28,
+    yearsOfService: 4,
+  }
+};
+
+export const INITIAL_CLASSES: SchoolClass[] = [
+  {
+    id: 'class-1',
+    classId: 'C1',
+    name: 'Class 1',
+    gradeLevel: 1,
+    assignedTeacher: 'Farhana Yasmin',
+    assignedTeacherId: 'TCH-001',
+    room: 'Room 101 (Sunflower)',
+    capacity: 30,
+    sections: ['A', 'B'],
+    description: 'Foundational literacy, Bangla alphabet, English phonics, basic counting 1-100, rhymes, and drawing.',
+    subjects: ['Bangla', 'English Rhymes', 'Basic Math', 'Drawing & Craft', 'Moral Stories']
+  },
+  {
+    id: 'class-2',
+    classId: 'C2',
+    name: 'Class 2',
+    gradeLevel: 2,
+    assignedTeacher: 'Tanvir Hasan',
+    assignedTeacherId: 'TCH-002',
+    room: 'Room 102 (Marigold)',
+    capacity: 30,
+    sections: ['A'],
+    description: 'Sentence formation, addition & subtraction, environmental awareness, story comprehension, and good habits.',
+    subjects: ['Bangla', 'English', 'Elementary Math', 'Environmental Studies', 'Art']
+  },
+  {
+    id: 'class-3',
+    classId: 'C3',
+    name: 'Class 3',
+    gradeLevel: 3,
+    assignedTeacher: 'Nusrat Jahan',
+    assignedTeacherId: 'TCH-003',
+    room: 'Room 201 (Water Lily)',
+    capacity: 28,
+    sections: ['A'],
+    description: 'Introduction to primary science, Bangladesh studies, multiplication & division, reading short story books.',
+    subjects: ['Bangla', 'English Grammar', 'Mathematics', 'Primary Science', 'Social Studies']
+  },
+  {
+    id: 'class-4',
+    classId: 'C4',
+    name: 'Class 4',
+    gradeLevel: 4,
+    assignedTeacher: 'Arifur Rahman',
+    assignedTeacherId: 'TCH-004',
+    room: 'Room 202 (Jasmine)',
+    capacity: 28,
+    sections: ['A'],
+    description: 'Critical thinking, basic geometry, fractions, life science, and essay writing in both Bangla and English.',
+    subjects: ['Bangla Literature', 'English', 'Mathematics', 'General Science', 'Bangladesh & Global Studies']
+  },
+  {
+    id: 'class-5',
+    classId: 'C5',
+    name: 'Class 5',
+    gradeLevel: 5,
+    assignedTeacher: 'Sadia Sultana',
+    assignedTeacherId: 'TCH-005',
+    room: 'Room 203 (Rose)',
+    capacity: 25,
+    sections: ['A'],
+    description: 'Graduating primary class. Deep preparation for secondary school transition, logical problem solving, and leadership.',
+    subjects: ['Bangla', 'English', 'Mathematics', 'Elementary Science', 'Bangladesh Studies', 'Moral Education']
+  }
+];
+
+export const INITIAL_TEACHERS: Teacher[] = [
+  {
+    id: 'tch-1',
+    teacherId: 'TCH-001',
+    fullName: 'Farhana Yasmin',
+    email: 'farhana.priyoful@gmail.com',
+    phone: '+880 1711-223344',
+    address: 'Block C, Mirpur 12, Dhaka',
+    assignedClass: 'Class 1',
+    assignedClasses: ['Class 1', 'Class 2'],
+    subject: 'Bangla & Early Literacy',
+    volunteerStatus: 'Full-time Volunteer',
+    joiningDate: '2023-01-15',
+    status: 'Active',
+    photoUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop&q=80',
+    password: 'teacher123',
+    notes: 'Passionate about playful learning and phonics. Coordinates morning story sessions.',
+    createdAt: '2023-01-15T00:00:00Z'
+  },
+  {
+    id: 'tch-2',
+    teacherId: 'TCH-002',
+    fullName: 'Tanvir Hasan',
+    email: 'tanvir.priyoful@gmail.com',
+    phone: '+880 1819-334455',
+    address: 'Shewrapara, Mirpur, Dhaka',
+    assignedClass: 'Class 2',
+    assignedClasses: ['Class 2'],
+    subject: 'Mathematics & Environmental Studies',
+    volunteerStatus: 'Part-time Volunteer',
+    joiningDate: '2023-03-01',
+    status: 'Active',
+    photoUrl: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&auto=format&fit=crop&q=80',
+    password: 'teacher123',
+    notes: 'Engineering student volunteering evening and afternoon hours. Makes math engaging through games.',
+    createdAt: '2023-03-01T00:00:00Z'
+  },
+  {
+    id: 'tch-3',
+    teacherId: 'TCH-003',
+    fullName: 'Nusrat Jahan',
+    email: 'nusrat.priyoful@gmail.com',
+    phone: '+880 1912-445566',
+    address: 'Kallayanpur, Dhaka',
+    assignedClass: 'Class 3',
+    assignedClasses: ['Class 3'],
+    subject: 'English & Primary Science',
+    volunteerStatus: 'Full-time Volunteer',
+    joiningDate: '2023-06-10',
+    status: 'Active',
+    photoUrl: 'https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=400&auto=format&fit=crop&q=80',
+    password: 'teacher123',
+    notes: 'Specializes in communicative English and basic scientific experiments with everyday household items.',
+    createdAt: '2023-06-10T00:00:00Z'
+  },
+  {
+    id: 'tch-4',
+    teacherId: 'TCH-004',
+    fullName: 'Arifur Rahman',
+    email: 'arifur.priyoful@gmail.com',
+    phone: '+880 1613-556677',
+    address: 'Kazipara, Mirpur, Dhaka',
+    assignedClass: 'Class 4',
+    assignedClasses: ['Class 4'],
+    subject: 'Mathematics & Social Studies',
+    volunteerStatus: 'Part-time Volunteer',
+    joiningDate: '2024-01-05',
+    status: 'Active',
+    photoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80',
+    password: 'teacher123',
+    notes: 'Experienced volunteer who organizes weekly outdoor sports and moral debate circles.',
+    createdAt: '2024-01-05T00:00:00Z'
+  },
+  {
+    id: 'tch-5',
+    teacherId: 'TCH-005',
+    fullName: 'Sadia Sultana',
+    email: 'sadia.priyoful@gmail.com',
+    phone: '+880 1515-667788',
+    address: 'Pallabi, Mirpur, Dhaka',
+    assignedClass: 'Class 5',
+    assignedClasses: ['Class 5'],
+    subject: 'Science & Primary Final Prep',
+    volunteerStatus: 'Full-time Volunteer',
+    joiningDate: '2022-10-01',
+    status: 'Active',
+    photoUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&auto=format&fit=crop&q=80',
+    password: 'teacher123',
+    notes: 'Senior volunteer teacher. Coordinates scholarship applications for graduating children.',
+    createdAt: '2022-10-01T00:00:00Z'
+  }
+];
+
+export const INITIAL_STUDENTS: Student[] = [
+  {
+    id: 'stu-1',
+    studentId: 'PF-2026-001',
+    fullName: 'Ayaan Hossain',
+    nickname: 'Ayaan',
+    dateOfBirth: '2019-04-12',
+    gender: 'Boy',
+    class: 'Class 1',
+    section: 'A',
+    rollNumber: '01',
+    admissionDate: '2025-01-10',
+    photoUrl: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=300&auto=format&fit=crop&q=80',
+    guardianName: 'Rahim Hossain (Father)',
+    guardianPhone: '+880 1723-001122',
+    guardianAddress: 'Line 4, Mirpur 11 Settlement, Dhaka',
+    emergencyContact: '+880 1723-001122',
+    bloodGroup: 'B+',
+    status: 'Active',
+    notes: 'Loves drawing colors and storytelling. Very enthusiastic learner.',
+    createdAt: '2025-01-10T00:00:00Z'
+  },
+  {
+    id: 'stu-2',
+    studentId: 'PF-2026-002',
+    fullName: 'Sumaiya Akter',
+    nickname: 'Sumi',
+    dateOfBirth: '2019-07-25',
+    gender: 'Girl',
+    class: 'Class 1',
+    section: 'A',
+    rollNumber: '02',
+    admissionDate: '2025-01-10',
+    photoUrl: 'https://images.unsplash.com/photo-1595454223600-91fbdd77e20f?w=300&auto=format&fit=crop&q=80',
+    guardianName: 'Rina Begum (Mother)',
+    guardianPhone: '+880 1834-112233',
+    guardianAddress: 'Line 2, Mirpur 11 Settlement, Dhaka',
+    emergencyContact: '+880 1834-112233',
+    bloodGroup: 'O+',
+    status: 'Active',
+    notes: 'Quick with Bangla alphabet; loves singing nursery rhymes.',
+    createdAt: '2025-01-10T00:00:00Z'
+  },
+  {
+    id: 'stu-3',
+    studentId: 'PF-2026-003',
+    fullName: 'Mehedi Hasan',
+    nickname: 'Hasan',
+    dateOfBirth: '2018-09-14',
+    gender: 'Boy',
+    class: 'Class 2',
+    section: 'A',
+    rollNumber: '01',
+    admissionDate: '2024-01-08',
+    photoUrl: 'https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?w=300&auto=format&fit=crop&q=80',
+    guardianName: 'Abdul Jalil (Uncle)',
+    guardianPhone: '+880 1945-223344',
+    guardianAddress: 'Lane 7, Mirpur 11, Dhaka',
+    emergencyContact: '+880 1945-223344',
+    bloodGroup: 'A+',
+    status: 'Active',
+    notes: 'Demonstrates great math interest. Helps peers during group activity.',
+    createdAt: '2024-01-08T00:00:00Z'
+  },
+  {
+    id: 'stu-4',
+    studentId: 'PF-2026-004',
+    fullName: 'Fatema Tuz Zohra',
+    nickname: 'Fatema',
+    dateOfBirth: '2018-02-18',
+    gender: 'Girl',
+    class: 'Class 2',
+    section: 'A',
+    rollNumber: '02',
+    admissionDate: '2024-01-12',
+    photoUrl: 'https://images.unsplash.com/photo-1544717302-de2939b7ef71?w=300&auto=format&fit=crop&q=80',
+    guardianName: 'Salma Khatun (Mother)',
+    guardianPhone: '+880 1656-334455',
+    guardianAddress: 'Lane 1, Mirpur Settlement, Dhaka',
+    emergencyContact: '+880 1656-334455',
+    bloodGroup: 'AB+',
+    status: 'Active',
+    notes: 'Regular attendance; excellent reading speed in simple Bangla stories.',
+    createdAt: '2024-01-12T00:00:00Z'
+  },
+  {
+    id: 'stu-5',
+    studentId: 'PF-2026-005',
+    fullName: 'Shakil Ahmed',
+    nickname: 'Shakil',
+    dateOfBirth: '2017-06-30',
+    gender: 'Boy',
+    class: 'Class 3',
+    section: 'A',
+    rollNumber: '01',
+    admissionDate: '2023-01-15',
+    photoUrl: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&auto=format&fit=crop&q=80',
+    guardianName: 'Nurul Islam (Father)',
+    guardianPhone: '+880 1767-445566',
+    guardianAddress: 'East Colony, Mirpur 11, Dhaka',
+    emergencyContact: '+880 1767-445566',
+    bloodGroup: 'O+',
+    status: 'Active',
+    notes: 'Keen in basic science lessons. Made a windmill paper craft.',
+    createdAt: '2023-01-15T00:00:00Z'
+  },
+  {
+    id: 'stu-6',
+    studentId: 'PF-2026-006',
+    fullName: 'Jannatul Ferdous',
+    nickname: 'Jannat',
+    dateOfBirth: '2017-11-05',
+    gender: 'Girl',
+    class: 'Class 3',
+    section: 'A',
+    rollNumber: '02',
+    admissionDate: '2023-01-18',
+    photoUrl: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=300&auto=format&fit=crop&q=80',
+    guardianName: 'Nasima Begum (Mother)',
+    guardianPhone: '+880 1878-556677',
+    guardianAddress: 'Block D, Mirpur 11, Dhaka',
+    emergencyContact: '+880 1878-556677',
+    bloodGroup: 'B+',
+    status: 'Active',
+    notes: 'Very attentive, loves English vocabulary quizzes.',
+    createdAt: '2023-01-18T00:00:00Z'
+  },
+  {
+    id: 'stu-7',
+    studentId: 'PF-2026-007',
+    fullName: 'Rimon Mia',
+    nickname: 'Rimon',
+    dateOfBirth: '2016-08-20',
+    gender: 'Boy',
+    class: 'Class 4',
+    section: 'A',
+    rollNumber: '01',
+    admissionDate: '2022-02-01',
+    photoUrl: 'https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=300&auto=format&fit=crop&q=80',
+    guardianName: 'Mojibur Rahman (Father)',
+    guardianPhone: '+880 1989-667788',
+    guardianAddress: 'Line 9, Mirpur 11, Dhaka',
+    emergencyContact: '+880 1989-667788',
+    bloodGroup: 'O-',
+    status: 'Active',
+    notes: 'Captain of Class 4 football friendly team. Good leadership skills.',
+    createdAt: '2022-02-01T00:00:00Z'
+  },
+  {
+    id: 'stu-8',
+    studentId: 'PF-2026-008',
+    fullName: 'Mim Akter',
+    nickname: 'Mim',
+    dateOfBirth: '2016-03-11',
+    gender: 'Girl',
+    class: 'Class 4',
+    section: 'A',
+    rollNumber: '02',
+    admissionDate: '2022-02-05',
+    photoUrl: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=300&auto=format&fit=crop&q=80',
+    guardianName: 'Kulsum Bibi (Grandmother)',
+    guardianPhone: '+880 1690-778899',
+    guardianAddress: 'Line 5, Mirpur 11, Dhaka',
+    emergencyContact: '+880 1690-778899',
+    bloodGroup: 'A-',
+    status: 'Active',
+    notes: 'Passionate reader, has borrowed 14 books from the school library this term.',
+    createdAt: '2022-02-05T00:00:00Z'
+  },
+  {
+    id: 'stu-9',
+    studentId: 'PF-2026-009',
+    fullName: 'Sabbir Hossain',
+    nickname: 'Sabbir',
+    dateOfBirth: '2015-10-10',
+    gender: 'Boy',
+    class: 'Class 5',
+    section: 'A',
+    rollNumber: '01',
+    admissionDate: '2021-01-20',
+    photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80',
+    guardianName: 'Md. Faruk (Father)',
+    guardianPhone: '+880 1701-889900',
+    guardianAddress: 'Plot 3, Mirpur 11 Community, Dhaka',
+    emergencyContact: '+880 1701-889900',
+    bloodGroup: 'B+',
+    status: 'Active',
+    notes: 'Prepares diligently for primary scholarship examinations. Strong in Math.',
+    createdAt: '2021-01-20T00:00:00Z'
+  },
+  {
+    id: 'stu-10',
+    studentId: 'PF-2026-010',
+    fullName: 'Tahmina Islam',
+    nickname: 'Tahmina',
+    dateOfBirth: '2015-05-15',
+    gender: 'Girl',
+    class: 'Class 5',
+    section: 'A',
+    rollNumber: '02',
+    admissionDate: '2021-01-22',
+    photoUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&auto=format&fit=crop&q=80',
+    guardianName: 'Rowshan Ara (Mother)',
+    guardianPhone: '+880 1812-990011',
+    guardianAddress: 'Plot 8, Mirpur 11 Community, Dhaka',
+    emergencyContact: '+880 1812-990011',
+    bloodGroup: 'O+',
+    status: 'Active',
+    notes: 'Aspires to be a doctor. Exemplary discipline and polite communication.',
+    createdAt: '2021-01-22T00:00:00Z'
+  }
+];
+
+export const INITIAL_BOOKS: Book[] = [
+  // Class 1 Books
+  {
+    id: 'bk-1',
+    bookId: 'BK-101',
+    name: 'আমার বাংলা বই - ১ম শ্রেণি (বর্ণমালা ও মজার ছড়া)',
+    author: 'এনসিটিবি (NCTB) পাঠ্যবই',
+    category: 'Textbook',
+    class: 'Class 1',
+    quantity: 35,
+    availableQuantity: 28,
+    description: 'রঙিন ছবিতে সাজানো স্বরবর্ণ, ব্যঞ্জনবর্ণ, সহজ শব্দের খেলা ও প্রাথমিক পঠন পাঠ্যবই।',
+    coverUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-01-15'
+  },
+  {
+    id: 'bk-2',
+    bookId: 'BK-102',
+    name: 'ছোটদের হাসিমুখ ছড়া ও রূপকথা',
+    author: 'সুকুমার রায় ও উপেন্দ্রকিশোর রায়চৌধুরী',
+    category: 'Bangla Rhymes',
+    class: 'Class 1',
+    quantity: 20,
+    availableQuantity: 16,
+    description: 'খোকন খোকন ডাক পাড়ি, আয় আয় চাঁদ মামা সহ ছোটদের প্রিয় ৫০টি ছড়া ও রঙিন চিত্রকল্প।',
+    coverUrl: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-02-10'
+  },
+  {
+    id: 'bk-3',
+    bookId: 'BK-103',
+    name: 'প্রাথমিক গণিত: ছবি দেখে এক-দুই গণনা (১ থেকে ৫০)',
+    author: 'প্রিয়ফুল শিশু শিক্ষাক্রম পরিষদ',
+    category: 'Textbook',
+    class: 'Class 1',
+    quantity: 30,
+    availableQuantity: 25,
+    description: 'ফুল, পাখি, ফল ও মাছ গুনে গুনে ১ থেকে ৫০ পর্যন্ত সংখ্যা চেনা ও সহজ দাগ টেনে মেলানো।',
+    coverUrl: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-02-15'
+  },
+  {
+    id: 'bk-4',
+    bookId: 'BK-104',
+    name: 'My First English Alphabet & Phonics Reader',
+    author: 'Cambridge Early Years Edition',
+    category: 'English Reader',
+    class: 'Class 1',
+    quantity: 25,
+    availableQuantity: 20,
+    description: 'A for Apple to Z for Zebra with large phonics letters and bright animal stickers.',
+    coverUrl: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-03-01'
+  },
+
+  // Class 2 Books
+  {
+    id: 'bk-5',
+    bookId: 'BK-201',
+    name: 'আমার বাংলা বই - ২য় শ্রেণি (সহজ বাক্য ও গল্প)',
+    author: 'এনসিটিবি (NCTB) পাঠ্যবই',
+    category: 'Textbook',
+    class: 'Class 2',
+    quantity: 30,
+    availableQuantity: 24,
+    description: 'জাতীয় পাঠ্যবোর্ড প্রণীত ছোট ছোট গল্প, কবিতা এবং বানান শুদ্ধির আনন্দময় পাঠ্যবই।',
+    coverUrl: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-01-20'
+  },
+  {
+    id: 'bk-6',
+    bookId: 'BK-202',
+    name: 'সহজ প্রাথমিক গণিত ও মজার ধাঁধা',
+    author: 'মুহম্মদ জাফর ইকবাল',
+    category: 'Textbook',
+    class: 'Class 2',
+    quantity: 25,
+    availableQuantity: 19,
+    description: 'দুই অঙ্কের হাতে না রেখে যোগ-বিয়োগ, জ্যামিতিক নকশা এবং বুদ্ধির মজার ধাঁধা।',
+    coverUrl: 'https://images.unsplash.com/photo-1532012164546-f432f2e3725b?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-02-12'
+  },
+  {
+    id: 'bk-7',
+    bookId: 'BK-203',
+    name: 'English for Today - Class 2',
+    author: 'NCTB Primary Board',
+    category: 'English Reader',
+    class: 'Class 2',
+    quantity: 30,
+    availableQuantity: 27,
+    description: 'Greetings, daily objects, rhymes, colors, numbers 1-30 and simple action dialogues.',
+    coverUrl: 'https://images.unsplash.com/photo-1491841573634-28140fc7ced7?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-02-25'
+  },
+  {
+    id: 'bk-8',
+    bookId: 'BK-204',
+    name: 'ছোটদের পরিবেশ ও সুন্দর অভ্যাস',
+    author: 'ড. আব্দুল্লাহ আল-মুতী',
+    category: 'Science & Nature',
+    class: 'Class 2',
+    quantity: 18,
+    availableQuantity: 14,
+    description: 'হাত ধোয়া, দাঁতের যত্ন, গাছ লাগানো ও চারপাশের পশুপাখির সাথে বন্ধুত্ব গড়ার ছবি-গল্প।',
+    coverUrl: 'https://images.unsplash.com/photo-1476820865390-c52aeebb9891?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-03-05'
+  },
+
+  // Class 3 Books
+  {
+    id: 'bk-9',
+    bookId: 'BK-301',
+    name: 'প্রাথমিক বিজ্ঞান - ৩য় শ্রেণি (প্রকৃতি ও আবহাওয়া)',
+    author: 'এনসিটিবি (NCTB) পাঠ্যবই',
+    category: 'Textbook',
+    class: 'Class 3',
+    quantity: 28,
+    availableQuantity: 22,
+    description: 'উদ্ভিদ ও প্রাণী, মাটি ও পানি, আবহাওয়া ও ঋতু পরিবর্তনের সহজ বৈজ্ঞানিক সত্য।',
+    coverUrl: 'https://images.unsplash.com/photo-1532012164546-f432f2e3725b?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-01-25'
+  },
+  {
+    id: 'bk-10',
+    bookId: 'BK-302',
+    name: 'আমার বাংলা বই ও নির্বাচিত ছোটগল্প',
+    author: 'কাজী নজরুল ইসলাম ও সুফিয়া কামাল',
+    category: 'Story',
+    class: 'Class 3',
+    quantity: 20,
+    availableQuantity: 15,
+    description: 'স্বাধীনতার চেতনা, মমত্ববোধ ও গ্রামীণ বাংলাদেশের চিরচেনা রূপ নিয়ে সমৃদ্ধ পাঠ সংকলন।',
+    coverUrl: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-02-18'
+  },
+  {
+    id: 'bk-11',
+    bookId: 'BK-303',
+    name: 'প্রাথমিক গণিত: নামতা ও গুণ-ভাগের মজার কৌশল',
+    author: 'এনসিটিবি (NCTB) পাঠ্যবই',
+    category: 'Textbook',
+    class: 'Class 3',
+    quantity: 28,
+    availableQuantity: 23,
+    description: '১ থেকে ১০ এর নামতা, সহজ গুণের নিয়ম, মুদ্রা ও টাকা-পয়সার বাস্তব হিসাব।',
+    coverUrl: 'https://images.unsplash.com/photo-1544717302-de2939b7ef71?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-02-28'
+  },
+  {
+    id: 'bk-12',
+    bookId: 'BK-304',
+    name: 'Aesop’s Moral Tales in Bengali & English',
+    author: 'ঈশপের নীতিগল্প (প্রিয়ফুল প্রকাশনা)',
+    category: 'Moral & Values',
+    class: 'Class 3',
+    quantity: 16,
+    availableQuantity: 12,
+    description: 'কচ্ছপ আর খরগোশ, তৃষ্ণার্ত কাক, রাখাল আর বাঘ—প্রতিটি গল্পে মূল্যবান জীবনের শিক্ষা।',
+    coverUrl: 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-03-10'
+  },
+
+  // Class 4 Books
+  {
+    id: 'bk-13',
+    bookId: 'BK-401',
+    name: 'আমার বাংলা বই ও ব্যাকরণ পাঠ - ৪র্থ শ্রেণি',
+    author: 'এনসিটিবি (NCTB) পাঠ্যবই',
+    category: 'Textbook',
+    class: 'Class 4',
+    quantity: 28,
+    availableQuantity: 21,
+    description: 'ভাষা ও ব্যাকরণ, যুক্তবর্ণের সঠিক ব্যবহার, অনুচ্ছেদ রচনা ও কবি-সাহিত্যিকদের জীবনী।',
+    coverUrl: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-01-28'
+  },
+  {
+    id: 'bk-14',
+    bookId: 'BK-402',
+    name: 'বাংলাদেশ ও বিশ্বপরিচয় - ৪র্থ শ্রেণি',
+    author: 'এনসিটিবি (NCTB) পাঠ্যবই',
+    category: 'Textbook',
+    class: 'Class 4',
+    quantity: 26,
+    availableQuantity: 20,
+    description: 'আমাদের মুক্তিযুদ্ধ, জাতীয় ইতিহাস, ভৌগোলিক সীমানা, ক্ষুদ্র নৃগোষ্ঠী ও সামাজিক মূল্যবোধ।',
+    coverUrl: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-02-20'
+  },
+  {
+    id: 'bk-15',
+    bookId: 'BK-403',
+    name: 'প্রাথমিক গণিত: ভগ্নাংশ ও জ্যামিতির মূলনীতি',
+    author: 'এনসিটিবি (NCTB) পাঠ্যবই',
+    category: 'Textbook',
+    class: 'Class 4',
+    quantity: 28,
+    availableQuantity: 24,
+    description: 'সাধারণ ভগ্নাংশ, দশমিক সংখ্যা, কোণ, ত্রিভুজ ও চতুর্ভুজের পরিষ্কার ভিজ্যুয়াল ধারণা।',
+    coverUrl: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-03-02'
+  },
+  {
+    id: 'bk-16',
+    bookId: 'BK-404',
+    name: 'মহাকাশ ও সৌরজগতের রোমাঞ্চকর তথ্য',
+    author: 'আবদুল্লাহ আল-মুতী',
+    category: 'Science & Nature',
+    class: 'Class 4',
+    quantity: 15,
+    availableQuantity: 11,
+    description: 'সূর্য, চাঁদ, আটটি গ্রহ ও পৃথিবীর সৃষ্টিরহস্য নিয়ে কিশোর-কিশোরীদের প্রিয় বৈজ্ঞানিক বই।',
+    coverUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-03-15'
+  },
+
+  // Class 5 Books
+  {
+    id: 'bk-17',
+    bookId: 'BK-501',
+    name: 'আমার বাংলা বই - ৫ম শ্রেণি (প্রাথমিক সমাপনী প্রস্তুতি)',
+    author: 'এনসিটিবি (NCTB) পাঠ্যবই',
+    category: 'Textbook',
+    class: 'Class 5',
+    quantity: 25,
+    availableQuantity: 19,
+    description: 'গৌরবময় মুক্তিযুদ্ধ, দেশপ্রেমের কবিতা, সাধু ও চলিত ভাষারীতি ও চিঠি লেখার নিয়মাবলি।',
+    coverUrl: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-01-30'
+  },
+  {
+    id: 'bk-18',
+    bookId: 'BK-502',
+    name: 'প্রাথমিক গণিত: ঐকিক নিয়ম, লসাগু ও গসাগু মাস্টারক্লাস',
+    author: 'এনসিটিবি (NCTB) পাঠ্যবই',
+    category: 'Textbook',
+    class: 'Class 5',
+    quantity: 25,
+    availableQuantity: 21,
+    description: 'ঐকিক নিয়ম, লাভ-ক্ষতি, শতকরা, গড় এবং বৃত্ত ও জ্যামিতিক উপপাদ্যের বাস্তব প্রয়োগ।',
+    coverUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-02-14'
+  },
+  {
+    id: 'bk-19',
+    bookId: 'BK-503',
+    name: 'Elementary Science: Energy, Climate & Human Health',
+    author: 'NCTB & UNICEF Education Support',
+    category: 'Textbook',
+    class: 'Class 5',
+    quantity: 25,
+    availableQuantity: 22,
+    description: 'Renewable energy, ecosystem preservation, safe drinking water, and infectious diseases prevention.',
+    coverUrl: 'https://images.unsplash.com/photo-1532012164546-f432f2e3725b?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-02-26'
+  },
+  {
+    id: 'bk-20',
+    bookId: 'BK-504',
+    name: 'Great Inspiring Leaders & Moral Values',
+    author: 'Priyoful Foundation Library',
+    category: 'Moral & Values',
+    class: 'Class 5',
+    quantity: 18,
+    availableQuantity: 15,
+    description: 'Inspiring life stories of Begum Rokeya, Rabindranath Tagore, Bangabandhu, and Helen Keller.',
+    coverUrl: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&auto=format&fit=crop&q=80',
+    addedDate: '2024-03-20'
+  }
+];
+
+export const INITIAL_MATERIALS: StudyMaterial[] = [
+  // Class 1 Materials
+  {
+    id: 'mat-1',
+    title: 'বাংলা স্বরবর্ণ ও ব্যঞ্জনবর্ণ সুন্দর হাতের লেখা শিট (Tracing Sheet)',
+    description: 'ডট টেনে টেনে অ, আ, ক, খ সুন্দরভাবে লেখার জন্য আকর্ষণীয় পশুর ছবিযুক্ত প্র্যাকটিস শিট।',
+    class: 'Class 1',
+    subject: 'Bangla',
+    teacherName: 'Farhana Yasmin',
+    teacherId: 'TCH-001',
+    fileType: 'PDF Worksheet',
+    fileUrl: '#sheet-class1-bangla-handwriting',
+    uploadDate: '2026-02-01'
+  },
+  {
+    id: 'mat-2',
+    title: 'ছবি গুনে সংখ্যা মেলানো ওয়ার্কশিট (সংখ্যা ১ থেকে ২০)',
+    description: 'আম, পাখি আর রঙিন বেলুন গুনে গুনে গোল দাগ দেওয়ার সহজ ও আনন্দময় গণিত শিট।',
+    class: 'Class 1',
+    subject: 'Basic Math',
+    teacherName: 'Farhana Yasmin',
+    teacherId: 'TCH-001',
+    fileType: 'Practice Sheet',
+    fileUrl: '#sheet-class1-math-counting',
+    uploadDate: '2026-02-10'
+  },
+  {
+    id: 'mat-3',
+    title: 'English Alphabet Phonics with Big Animals Chart',
+    description: 'Full color wall chart: A for Apple, B for Ball, C for Cat with phonics pronunciation guides.',
+    class: 'Class 1',
+    subject: 'English Rhymes',
+    teacherName: 'Nusrat Jahan',
+    teacherId: 'TCH-003',
+    fileType: 'Visual Chart',
+    fileUrl: '#chart-class1-english-phonics',
+    uploadDate: '2026-02-15'
+  },
+  {
+    id: 'mat-4',
+    title: 'মজার ছড়া ও আবৃত্তি নোট: আমাদের ছোট নদী চলে বাঁকে বাঁকে',
+    description: 'ছন্দের তালে হাততালি দিয়ে ছড়া মুখস্থ করার সহজ অডিও-ভিজ্যুয়াল পাঠ নির্দেশিকা।',
+    class: 'Class 1',
+    subject: 'Bangla',
+    teacherName: 'Farhana Yasmin',
+    teacherId: 'TCH-001',
+    fileType: 'Audio Rhyme',
+    fileUrl: '#audio-class1-bangla-rhyme',
+    uploadDate: '2026-02-20'
+  },
+
+  // Class 2 Materials
+  {
+    id: 'mat-5',
+    title: 'দুই অঙ্কের সহজ যোগ ও বিয়োগ অনুশীলন শিট (With Pictures)',
+    description: 'হাতে না রেখে সহজ যোগ ও বিয়োগের ১০টি বাস্তব সমস্যা ও খালি ঘর পূরণের শিট।',
+    class: 'Class 2',
+    subject: 'Elementary Math',
+    teacherName: 'Tanvir Hasan',
+    teacherId: 'TCH-002',
+    fileType: 'Practice Sheet',
+    fileUrl: '#sheet-class2-math-addition',
+    uploadDate: '2026-02-08'
+  },
+  {
+    id: 'mat-6',
+    title: 'যুক্তবর্ণ ছাড়া ছোট বাক্য গঠন ও রিডিং প্র্যাকটিস শিট',
+    description: 'সহজ শব্দ দিয়ে পাঁচ লাইনের সুন্দর অনুচ্ছেদ পড়া ও শূন্যস্থান পূরণ শিট।',
+    class: 'Class 2',
+    subject: 'Bangla',
+    teacherName: 'Farhana Yasmin',
+    teacherId: 'TCH-001',
+    fileType: 'PDF Worksheet',
+    fileUrl: '#sheet-class2-bangla-sentences',
+    uploadDate: '2026-02-12'
+  },
+  {
+    id: 'mat-7',
+    title: 'Daily Action Words (Verbs) & Family Members Chart',
+    description: 'Illustrated flashcards: Father, Mother, Brother, Sister, Eat, Sleep, Play, Study.',
+    class: 'Class 2',
+    subject: 'English',
+    teacherName: 'Nusrat Jahan',
+    teacherId: 'TCH-003',
+    fileType: 'Visual Chart',
+    fileUrl: '#chart-class2-english-verbs',
+    uploadDate: '2026-02-18'
+  },
+  {
+    id: 'mat-8',
+    title: 'পরিবেশ পরিচিতি: আমাদের চারপাশের গাছপালা ও পশুপাখির যত্ন নোট',
+    description: 'গাছে পানি দেওয়া এবং বিড়াল-কুকুরকে আদর করার মানবিক ভালো অভ্যাসের লেকচার শিট।',
+    class: 'Class 2',
+    subject: 'Environmental Studies',
+    teacherName: 'Tanvir Hasan',
+    teacherId: 'TCH-002',
+    fileType: 'Lesson Notes',
+    fileUrl: '#notes-class2-environment',
+    uploadDate: '2026-02-24'
+  },
+
+  // Class 3 Materials
+  {
+    id: 'mat-9',
+    title: 'নামতা (১ থেকে ১০) স্পিড টেস্ট ও পূরণ করার ওয়ার্কশিট',
+    description: 'মজার গ্রিড ও ডায়মন্ড চার্টের মাধ্যমে নামতা মুখস্থ রাখার বিশেষ গণিত অনুশীলন শিট।',
+    class: 'Class 3',
+    subject: 'Mathematics',
+    teacherName: 'Tanvir Hasan',
+    teacherId: 'TCH-002',
+    fileType: 'Practice Sheet',
+    fileUrl: '#sheet-class3-math-multiplication',
+    uploadDate: '2026-02-05'
+  },
+  {
+    id: 'mat-10',
+    title: 'প্রাথমিক বিজ্ঞান: উদ্ভিদের বিভিন্ন অংশ ও খাদ্য তৈরি চার্ট',
+    description: 'মূল, কাণ্ড, পাতা, ফুল ও ফলের রঙিন চিত্র এবং সালোকসংশ্লেষণের সহজ রূপরেখা।',
+    class: 'Class 3',
+    subject: 'Primary Science',
+    teacherName: 'Nusrat Jahan',
+    teacherId: 'TCH-003',
+    fileType: 'Visual Chart',
+    fileUrl: '#chart-class3-science-plants',
+    uploadDate: '2026-02-14'
+  },
+  {
+    id: 'mat-11',
+    title: 'English Reading Comprehension & Word Meaning Worksheet',
+    description: 'Short 10-line story with multiple choice questions, true/false, and spelling puzzles.',
+    class: 'Class 3',
+    subject: 'English Grammar',
+    teacherName: 'Nusrat Jahan',
+    teacherId: 'TCH-003',
+    fileType: 'PDF Worksheet',
+    fileUrl: '#sheet-class3-english-reading',
+    uploadDate: '2026-02-21'
+  },
+  {
+    id: 'mat-12',
+    title: 'আমাদের প্রিয় বাংলাদেশ: জাতীয় প্রতীক, স্মৃতিসৌধ ও নদী পরিচিতি নোট',
+    description: 'পদ্মা, মেঘনা, যমুনা এবং জাতীয় পতাকা ও স্মৃতিসৌধ সম্পর্কে সংক্ষিপ্ত প্রশ্নোত্তরের শিট।',
+    class: 'Class 3',
+    subject: 'Social Studies',
+    teacherName: 'Arifur Rahman',
+    teacherId: 'TCH-004',
+    fileType: 'Lesson Notes',
+    fileUrl: '#notes-class3-bangladesh-heritage',
+    uploadDate: '2026-02-27'
+  },
+
+  // Class 4 Materials
+  {
+    id: 'mat-13',
+    title: 'সহজ ভগ্নাংশ ও জ্যামিতিক কোণ সমাধান ওয়ার্কশিট',
+    description: 'অর্ধেক, এক-চতুর্থাংশ ছবি এঁকে প্রকাশ ও চাঁদার সাহায্যে সূক্ষ্মকোণ-স্থূলকোণ চিহ্নিতকরণ।',
+    class: 'Class 4',
+    subject: 'Mathematics',
+    teacherName: 'Tanvir Hasan',
+    teacherId: 'TCH-002',
+    fileType: 'Practice Sheet',
+    fileUrl: '#sheet-class4-math-fractions',
+    uploadDate: '2026-02-03'
+  },
+  {
+    id: 'mat-14',
+    title: 'যুক্তাক্ষর ভেঙে শব্দ তৈরি ও অনুচ্ছেদ লিখন শিট',
+    description: 'জ্ঞ, ক্ষ, ক্ত, ত্র দিয়ে শব্দ গঠন এবং "আমার প্রিয় খেলা" শীর্ষক অনুচ্ছেদ গাইড শিট।',
+    class: 'Class 4',
+    subject: 'Bangla Literature',
+    teacherName: 'Farhana Yasmin',
+    teacherId: 'TCH-001',
+    fileType: 'PDF Worksheet',
+    fileUrl: '#sheet-class4-bangla-juktoborno',
+    uploadDate: '2026-02-11'
+  },
+  {
+    id: 'mat-15',
+    title: 'The Solar System & Eight Planets Science Chart',
+    description: 'Full color diagram showing Sun, Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune.',
+    class: 'Class 4',
+    subject: 'General Science',
+    teacherName: 'Arifur Rahman',
+    teacherId: 'TCH-004',
+    fileType: 'Visual Chart',
+    fileUrl: '#chart-class4-science-solarsystem',
+    uploadDate: '2026-02-19'
+  },
+  {
+    id: 'mat-16',
+    title: 'English Present & Past Tense Sentence Making Notes',
+    description: 'Clear tables comparing "I go" vs "I went", "She sings" vs "She sang" with exercise blanks.',
+    class: 'Class 4',
+    subject: 'English',
+    teacherName: 'Arifur Rahman',
+    teacherId: 'TCH-004',
+    fileType: 'Lesson Notes',
+    fileUrl: '#notes-class4-english-tenses',
+    uploadDate: '2026-02-25'
+  },
+
+  // Class 5 Materials
+  {
+    id: 'mat-17',
+    title: 'ঐকিক নিয়ম, শতকরা ও মুনাফা সমাধান মডেল টেস্ট শিট',
+    description: 'বাস্তব জীবনের কেনাবেচা, সুদ-আসল ও শ্রমের সময়ের গাণিতিক সমস্যার সমাধান গাইড।',
+    class: 'Class 5',
+    subject: 'Mathematics',
+    teacherName: 'Sadia Sultana',
+    teacherId: 'TCH-005',
+    fileType: 'Practice Sheet',
+    fileUrl: '#sheet-class5-math-unitary',
+    uploadDate: '2026-02-02'
+  },
+  {
+    id: 'mat-18',
+    title: 'বাংলা ভাবসম্প্রসারণ ও আনুষ্ঠানিক দরখাস্ত লেখার গাইড শিট',
+    description: 'ছুটির আবেদনপত্র, প্রধান শিক্ষকের নিকট দরখাস্ত ও "পরিশ্রম সৌভাগ্যের প্রসূতি" ভাবসম্প্রসারণ।',
+    class: 'Class 5',
+    subject: 'Bangla',
+    teacherName: 'Sadia Sultana',
+    teacherId: 'TCH-005',
+    fileType: 'PDF Worksheet',
+    fileUrl: '#sheet-class5-bangla-application',
+    uploadDate: '2026-02-09'
+  },
+  {
+    id: 'mat-19',
+    title: 'Elementary Science: Energy Conservation & Ecosystem Food Chain',
+    description: 'Visual chart illustrating producers, herbivores, carnivores, and solar energy conversion.',
+    class: 'Class 5',
+    subject: 'Elementary Science',
+    teacherName: 'Sadia Sultana',
+    teacherId: 'TCH-005',
+    fileType: 'Visual Chart',
+    fileUrl: '#chart-class5-science-ecosystem',
+    uploadDate: '2026-02-17'
+  },
+  {
+    id: 'mat-20',
+    title: 'English Model Question & Dialogue Practice Worksheet',
+    description: 'Doctor-Patient, Teacher-Student conversation scripts and primary completion exam model sheet.',
+    class: 'Class 5',
+    subject: 'English',
+    teacherName: 'Sadia Sultana',
+    teacherId: 'TCH-005',
+    fileType: 'Lesson Notes',
+    fileUrl: '#notes-class5-english-dialogue',
+    uploadDate: '2026-02-23'
+  }
+];
+
+export const INITIAL_ANNOUNCEMENTS: Announcement[] = [
+  {
+    id: 'ann-1',
+    title: 'Morning Warm-up & Free Nutritious Biscuit Distribution',
+    content: 'All students are requested to be present at 8:45 AM for morning assembly and mid-day nutrition pack distribution.',
+    target: 'All',
+    published: true,
+    author: 'Principal / Admin',
+    date: '2026-03-01'
+  },
+  {
+    id: 'ann-2',
+    title: 'Monthly Teachers & Volunteer Coordination Meeting',
+    content: 'Volunteers meeting this Friday at 4:30 PM to discuss Class 1-5 syllabus progress and stationery restock.',
+    target: 'Teachers',
+    published: true,
+    author: 'Head Volunteer',
+    date: '2026-03-05'
+  },
+  {
+    id: 'ann-3',
+    title: 'Free Children Eye Care Camp Next Saturday',
+    content: 'In collaboration with volunteer ophthalmologists, all students will receive gentle vision screenings.',
+    target: 'Public',
+    published: true,
+    author: 'Priyoful Team',
+    date: '2026-03-10'
+  }
+];
+
+export const INITIAL_EVENTS: SchoolEvent[] = [
+  {
+    id: 'evt-1',
+    title: 'Annual Book & Storytelling Festival 2026',
+    description: 'A magical day filled with folk tales, open-air puppet shows, and new book gifts for every child in Class 1 through Class 5.',
+    date: '2026-04-14',
+    time: '10:00 AM - 2:00 PM',
+    location: 'Priyoful Courtyard, Mirpur Settlement',
+    coverUrl: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600&auto=format&fit=crop&q=80',
+    published: true
+  },
+  {
+    id: 'evt-2',
+    title: 'Community Art & Wall Mural Celebration',
+    description: 'Children and volunteer mentors painting inspiring murals on community school walls celebrating dreams and nature.',
+    date: '2026-05-02',
+    time: '9:00 AM - 1:00 PM',
+    location: 'School Premises',
+    coverUrl: 'https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?w=600&auto=format&fit=crop&q=80',
+    published: true
+  },
+  {
+    id: 'evt-3',
+    title: 'Handwashing & Dental Hygiene Awareness Workshop',
+    description: 'Doctors visiting with toothbrushes, soap kits, and friendly cartoon animations to teach daily hygiene habits.',
+    date: '2026-05-20',
+    time: '11:00 AM - 1:00 PM',
+    location: 'Room 101 & 102',
+    coverUrl: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&auto=format&fit=crop&q=80',
+    published: true
+  }
+];
+
+export const INITIAL_NEWS: NewsArticle[] = [
+  {
+    id: 'news-1',
+    title: 'Celebrating 100% Literacy Milestone for Class 2 Students',
+    summary: 'Through individualized volunteer tutoring, every child in Class 2 can now independently read and comprehend basic Bengali storybooks.',
+    content: 'At Priyoful, we measure success not merely by test scores, but by the sparkle of confidence in a child\'s eyes when they read their first sentence. In a community where parents are mostly daily wage earners with limited literacy, this milestone has ignited immense pride across families.',
+    date: '2026-02-15',
+    coverUrl: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&auto=format&fit=crop&q=80',
+    published: true,
+    author: 'Sadia Sultana'
+  },
+  {
+    id: 'news-2',
+    title: 'How Volunteer Contribution Drives Our Daily School Meals',
+    summary: 'Every volunteer educator at Priyoful contributes a part of their personal savings each month to ensure children receive fresh milk and wholesome snacks.',
+    content: 'Hunger is the greatest obstacle to learning. To ensure our students can focus with alert minds, our volunteer teachers initiated a pooled self-fund. Along with community donors, this fund guarantees that 145 children receive clean water, fresh seasonal fruits, and nutritious biscuits daily.',
+    date: '2026-01-28',
+    coverUrl: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&auto=format&fit=crop&q=80',
+    published: true,
+    author: 'Tanvir Hasan'
+  }
+];
+
+export const INITIAL_GALLERY: GalleryItem[] = [
+  {
+    id: 'gal-pic1',
+    title: 'প্রিয়ফুল দেওয়ালচিত্র ও আমাদের পরিবার (Mural & Community)',
+    caption: 'প্রিয়ফুল পাঠশালার রঙিন দেওয়ালচিত্র "শিখবো, ফুটবো, গড়বো দেশ"—শিক্ষক, স্বেচ্ছাসেবী ও শিক্ষার্থীদের মিলনমেলা (পরিচালনায়: QSP ফাউন্ডেশন)।',
+    imageUrl: '/pic1.jpg',
+    category: 'Community',
+    date: '2026-03-01',
+    isFeatured: true
+  },
+  {
+    id: 'gal-pic2',
+    title: 'প্রিয়ফুল আনন্দ পাঠ ও শ্রেণিকক্ষের মুহূর্ত',
+    caption: 'শ্রেণিকক্ষে শিশুদের সাথে আনন্দঘন পাঠদান, শিক্ষা সামগ্রী ও সৃজনশীল কার্যক্রমের চমৎকার মুহূর্ত।',
+    imageUrl: '/pic2.jpg',
+    category: 'Classroom',
+    date: '2026-03-02',
+    isFeatured: true
+  },
+  {
+    id: 'gal-pic3',
+    title: 'প্রিয়ফুলের একঝাঁক উচ্ছ্বল মুখ ও উৎসব',
+    caption: 'শিশুদের মুখে অমলিন হাসির ফোয়ারা—শিক্ষার আলোয় আলোকিত প্রতিটি নিষ্পাপ প্রাণের প্রাণোচ্ছ্বল স্মৃতি।',
+    imageUrl: '/pic3.jpg',
+    category: 'Sports & Fun',
+    date: '2026-03-03',
+    isFeatured: true
+  },
+  {
+    id: 'gal-prioful',
+    title: 'প্রিয়ফুল পাঠশালা প্রাঙ্গণ ও বিশেষ আয়োজন',
+    caption: 'আমাদের প্রিয়ফুল পাঠশালার রঙিন প্রাঙ্গণ ও শিশুদের অনুপ্রেরণাদায়ী সমাবেশ।',
+    imageUrl: '/prioful.jpg',
+    category: 'Community',
+    date: '2026-03-04',
+    isFeatured: true
+  },
+  {
+    id: 'gal-1',
+    title: 'Class 1 Drawing Hour',
+    caption: 'Children joyfully discovering colors and painting paper kites together.',
+    imageUrl: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&auto=format&fit=crop&q=80',
+    category: 'Art & Creativity',
+    date: '2026-02-20',
+    isFeatured: true
+  },
+  {
+    id: 'gal-2',
+    title: 'Library Story Circle',
+    caption: 'Students gathered around teacher Farhana during the afternoon fairy tale reading.',
+    imageUrl: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&auto=format&fit=crop&q=80',
+    category: 'Classroom',
+    date: '2026-02-18',
+    isFeatured: true
+  },
+  {
+    id: 'gal-3',
+    title: 'Friday Sports & Joy',
+    caption: 'Energetic courtyard running game during recess time.',
+    imageUrl: 'https://images.unsplash.com/photo-1472162072942-cd5147eb3902?w=600&auto=format&fit=crop&q=80',
+    category: 'Sports & Fun',
+    date: '2026-02-12',
+    isFeatured: true
+  },
+  {
+    id: 'gal-4',
+    title: 'Nutritious Snack Time',
+    caption: 'Sharing smiles and healthy snacks before afternoon mathematics class.',
+    imageUrl: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&auto=format&fit=crop&q=80',
+    category: 'Food & Health',
+    date: '2026-02-05',
+    isFeatured: false
+  },
+  {
+    id: 'gal-5',
+    title: 'Science Hands-on Lab',
+    caption: 'Observing plant sprouts in plastic cups to study seed germination.',
+    imageUrl: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600&auto=format&fit=crop&q=80',
+    category: 'Classroom',
+    date: '2026-01-25',
+    isFeatured: true
+  },
+  {
+    id: 'gal-6',
+    title: 'Guardian-Teacher Warm Exchange',
+    caption: 'Mothers visiting after class to celebrate their children\'s handwritten Bangla poetry.',
+    imageUrl: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&auto=format&fit=crop&q=80',
+    category: 'Community',
+    date: '2026-01-14',
+    isFeatured: false
+  }
+];
+
+// STRICTLY ADMIN ACCESS FINANCIAL DATA
+export const INITIAL_DONATIONS: Donation[] = [
+  {
+    id: 'don-1',
+    donorName: 'Anonymous Well-wisher',
+    donorEmail: 'supporter@gmail.com',
+    donorPhone: '+880 1711-000111',
+    amount: 15000,
+    paymentMethod: 'bKash',
+    transactionId: '9K8J7H6G5F',
+    message: 'For children\'s books and drawing colors. May Priyoful flourish.',
+    status: 'Verified',
+    isAnonymous: true,
+    date: '2026-02-15',
+    createdAt: '2026-02-15T10:00:00Z'
+  },
+  {
+    id: 'don-2',
+    donorName: 'Syed Mahmudur Rahman',
+    donorEmail: 'mahmudur.s@outlook.com',
+    donorPhone: '+880 1819-222333',
+    amount: 25000,
+    paymentMethod: 'Bank Transfer',
+    transactionId: 'DBBL-TRX-882910',
+    message: 'Monthly sponsorship for classroom rent support.',
+    status: 'Verified',
+    isAnonymous: false,
+    date: '2026-02-20',
+    createdAt: '2026-02-20T14:30:00Z'
+  },
+  {
+    id: 'don-3',
+    donorName: 'Dr. Afia Tasnim',
+    donorEmail: 'afia.tasnim@med.org',
+    donorPhone: '+880 1912-333444',
+    amount: 10000,
+    paymentMethod: 'Nagad',
+    transactionId: 'NGD-771829',
+    message: 'Contribution for first aid kits and student snacks.',
+    status: 'Verified',
+    isAnonymous: false,
+    date: '2026-02-28',
+    createdAt: '2026-02-28T09:15:00Z'
+  },
+  {
+    id: 'don-4',
+    donorName: 'Kazi Naimul',
+    donorEmail: 'naimul.kazi@gmail.com',
+    donorPhone: '+880 1611-444555',
+    amount: 5000,
+    paymentMethod: 'bKash',
+    transactionId: 'BK-552418',
+    message: 'Supporting education for slum children.',
+    status: 'Pending',
+    isAnonymous: false,
+    date: '2026-03-02',
+    createdAt: '2026-03-02T16:20:00Z'
+  }
+];
+
+// STRICTLY ADMIN ACCESS
+export const INITIAL_TRANSACTIONS: FinancialTransaction[] = [
+  {
+    id: 'txn-1',
+    type: 'income',
+    category: 'Online Donation',
+    description: 'bKash community contribution for Class 1 books',
+    amount: 15000,
+    paymentMethod: 'bKash',
+    reference: '9K8J7H6G5F',
+    date: '2026-02-15',
+    recordedBy: 'Admin (Rashidul Haq)'
+  },
+  {
+    id: 'txn-2',
+    type: 'income',
+    category: 'Bank Donation',
+    description: 'Direct bank transfer from donor for school rent',
+    amount: 25000,
+    paymentMethod: 'Bank Transfer',
+    reference: 'DBBL-TRX-882910',
+    date: '2026-02-20',
+    recordedBy: 'Admin (Rashidul Haq)'
+  },
+  {
+    id: 'txn-3',
+    type: 'income',
+    category: 'Volunteer Contribution',
+    description: 'Teacher Farhana & Tanvir pooled self-contribution',
+    amount: 12000,
+    paymentMethod: 'Cash',
+    reference: 'VOL-POOL-FEB26',
+    date: '2026-02-22',
+    recordedBy: 'Admin (Rashidul Haq)',
+    notes: 'Volunteers contribute monthly to keep school operation afloat.'
+  },
+  {
+    id: 'txn-4',
+    type: 'expense',
+    category: 'School Room Rent',
+    description: 'Monthly rent for settlement school room facility (February)',
+    amount: 16000,
+    paymentMethod: 'Cash',
+    reference: 'RENT-REC-0226',
+    date: '2026-02-25',
+    recordedBy: 'Admin (Rashidul Haq)'
+  },
+  {
+    id: 'txn-5',
+    type: 'expense',
+    category: 'Educational Materials & Books',
+    description: 'Printing 100 practice worksheets and purchase of 30 notebooks',
+    amount: 6500,
+    paymentMethod: 'bKash',
+    reference: 'STAT-028',
+    date: '2026-02-26',
+    recordedBy: 'Admin (Rashidul Haq)'
+  },
+  {
+    id: 'txn-6',
+    type: 'expense',
+    category: 'Food & Nutrition Snacks',
+    description: 'Fresh bananas and fortified biscuits for 145 students (2 weeks)',
+    amount: 8200,
+    paymentMethod: 'Cash',
+    reference: 'FOOD-SNACK-99',
+    date: '2026-02-27',
+    recordedBy: 'Admin (Rashidul Haq)'
+  },
+  {
+    id: 'txn-7',
+    type: 'expense',
+    category: 'Electricity & Drinking Water',
+    description: 'Monthly utility bill and 20L purified water jar refills',
+    amount: 3200,
+    paymentMethod: 'bKash',
+    reference: 'UTIL-0226',
+    date: '2026-02-28',
+    recordedBy: 'Admin (Rashidul Haq)'
+  }
+];
+
+export const INITIAL_ACADEMIC_RECORDS: AcademicRecord[] = [
+  {
+    id: 'acad-1',
+    studentId: 'PF-2026-001',
+    studentName: 'Ayaan Hossain',
+    class: 'Class 1',
+    subject: 'Bangla',
+    examType: 'Monthly Test',
+    marks: 48,
+    maxMarks: 50,
+    grade: 'A+',
+    remarks: 'Flawless handwriting and quick recognition of Bangla letters.',
+    recordedBy: 'Farhana Yasmin',
+    date: '2026-02-25'
+  },
+  {
+    id: 'acad-2',
+    studentId: 'PF-2026-003',
+    studentName: 'Mehedi Hasan',
+    class: 'Class 2',
+    subject: 'Elementary Math',
+    examType: 'Monthly Test',
+    marks: 46,
+    maxMarks: 50,
+    grade: 'A+',
+    remarks: 'Brilliant understanding of addition and two-digit numbers.',
+    recordedBy: 'Tanvir Hasan',
+    date: '2026-02-25'
+  },
+  {
+    id: 'acad-3',
+    studentId: 'PF-2026-005',
+    studentName: 'Shakil Ahmed',
+    class: 'Class 3',
+    subject: 'Primary Science',
+    examType: 'First Term',
+    marks: 88,
+    maxMarks: 100,
+    grade: 'A+',
+    remarks: 'Inquisitive mind; explains concepts very clearly.',
+    recordedBy: 'Nusrat Jahan',
+    date: '2026-02-26'
+  },
+  {
+    id: 'acad-4',
+    studentId: 'PF-2026-009',
+    studentName: 'Sabbir Hossain',
+    class: 'Class 5',
+    subject: 'Mathematics',
+    examType: 'First Term',
+    marks: 94,
+    maxMarks: 100,
+    grade: 'A+',
+    remarks: 'Outstanding speed in word problems. Ready for scholarship prep.',
+    recordedBy: 'Sadia Sultana',
+    date: '2026-02-27'
+  }
+];

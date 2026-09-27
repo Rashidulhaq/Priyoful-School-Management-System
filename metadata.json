@@ -1,0 +1,6 @@
+{
+  "name": "Priyoful - School & Management System",
+  "description": "Nonprofit volunteer-run school providing education to underprivileged children living in low-income settlement communities from Class 1 to Class 5.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,141 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny all access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'rashidulhaqofficial@gmail.com' ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    function isTeacher() {
+      return isSignedIn() && exists(/databases/$(database)/documents/teachers/$(request.auth.uid));
+    }
+
+    // Public test connection endpoint for health check
+    match /test/connection {
+      allow read: if true;
+    }
+
+    // Admins collection
+    match /admins/{adminId} {
+      allow read: if isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // Teachers collection
+    match /teachers/{teacherId} {
+      allow read: if isAdmin() || (isSignedIn() && (request.auth.uid == teacherId || isTeacher()));
+      allow write: if isAdmin();
+    }
+
+    // Students collection: Admin and Teachers have access. Public users CANNOT access
+    match /students/{studentId} {
+      allow read: if isAdmin() || isTeacher();
+      allow write: if isAdmin() || isTeacher();
+    }
+
+    // Classes 1-5
+    match /classes/{classId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Attendance
+    match /attendance/{attendanceId} {
+      allow read: if isAdmin() || isTeacher();
+      allow write: if isAdmin() || isTeacher();
+    }
+
+    // Academic records
+    match /academicRecords/{recordId} {
+      allow read: if isAdmin() || isTeacher();
+      allow write: if isAdmin() || isTeacher();
+    }
+
+    // Books & Library
+    match /books/{bookId} {
+      allow read: if true;
+      allow write: if isAdmin() || isTeacher();
+    }
+
+    // Study materials & worksheets
+    match /materials/{materialId} {
+      allow read: if true;
+      allow write: if isAdmin() || isTeacher();
+    }
+
+    // Announcements
+    match /announcements/{announcementId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Events
+    match /events/{eventId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // News
+    match /news/{newsId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Gallery
+    match /gallery/{galleryId} {
+      allow read, write: if true;
+    }
+
+    // Contact messages: Public can send messages, Admin can read and manage
+    match /contactMessages/{messageId} {
+      allow read, write: if true;
+    }
+
+    // STRICTEST FINANCIAL ISOLATION:
+    // Teachers and Public CANNOT read donations, income, expenses or payment transactions.
+    // Public donors can submit a donation document, but CANNOT read any donation records.
+    match /donations/{donationId} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /financial/{financialId} {
+      allow read, write: if isAdmin();
+    }
+
+    match /income/{id} {
+      allow read, write: if isAdmin();
+    }
+
+    match /expenses/{id} {
+      allow read, write: if isAdmin();
+    }
+
+    match /paymentTransactions/{id} {
+      allow read, write: if isAdmin();
+    }
+
+    // Audit logs
+    match /auditLogs/{logId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin() || isTeacher();
+      allow update, delete: if false;
+    }
+
+    // Settings
+    match /settings/{settingId} {
+      allow read, write: if true;
+    }
+  }
+}

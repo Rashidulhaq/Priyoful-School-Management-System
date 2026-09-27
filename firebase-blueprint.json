@@ -1,0 +1,363 @@
+{
+  "entities": {
+    "Admin": {
+      "title": "Admin",
+      "description": "System administrator with full school and financial management rights",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Auth UID of the admin" },
+        "email": { "type": "string", "description": "Admin email address" },
+        "name": { "type": "string", "description": "Admin full name" },
+        "role": { "type": "string", "enum": ["admin"], "description": "System role" },
+        "createdAt": { "type": "string", "description": "ISO timestamp of creation" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Teacher": {
+      "title": "Teacher",
+      "description": "Volunteer teacher teaching classes in Priyoful",
+      "type": "object",
+      "properties": {
+        "teacherId": { "type": "string", "description": "Unique identifier e.g. TCH-01" },
+        "fullName": { "type": "string", "description": "Full name of teacher" },
+        "email": { "type": "string", "description": "Email address" },
+        "phone": { "type": "string", "description": "Contact phone number" },
+        "address": { "type": "string", "description": "Home address" },
+        "assignedClass": { "type": "string", "description": "Assigned primary class e.g. Class 1" },
+        "assignedClasses": { "type": "string", "description": "Comma separated classes or list" },
+        "subject": { "type": "string", "description": "Subjects taught" },
+        "volunteerStatus": { "type": "string", "enum": ["Full-time Volunteer", "Part-time Volunteer", "Weekend Volunteer"], "description": "Volunteer type" },
+        "joiningDate": { "type": "string", "description": "Joining date" },
+        "status": { "type": "string", "enum": ["Active", "On Leave", "Archived"], "description": "Current status" },
+        "photoUrl": { "type": "string", "description": "Profile picture URL" },
+        "notes": { "type": "string", "description": "Administrative notes" },
+        "createdAt": { "type": "string", "description": "Creation timestamp" }
+      },
+      "required": ["teacherId", "fullName", "email", "assignedClass", "status"]
+    },
+    "Student": {
+      "title": "Student",
+      "description": "Student enrolled in Priyoful primary school (Class 1 to 5)",
+      "type": "object",
+      "properties": {
+        "studentId": { "type": "string", "description": "Unique student ID e.g. STU-2026-001" },
+        "fullName": { "type": "string", "description": "Student full legal name" },
+        "nickname": { "type": "string", "description": "Student nickname or familiar call name" },
+        "dateOfBirth": { "type": "string", "description": "Birth date YYYY-MM-DD" },
+        "gender": { "type": "string", "enum": ["Boy", "Girl", "Other"], "description": "Gender" },
+        "class": { "type": "string", "enum": ["Class 1", "Class 2", "Class 3", "Class 4", "Class 5"], "description": "Enrolled class" },
+        "section": { "type": "string", "description": "Section A or B" },
+        "rollNumber": { "type": "string", "description": "Class roll number" },
+        "admissionDate": { "type": "string", "description": "Date of admission" },
+        "photoUrl": { "type": "string", "description": "Student photograph URL" },
+        "guardianName": { "type": "string", "description": "Guardian or parent full name" },
+        "guardianPhone": { "type": "string", "description": "Guardian contact phone" },
+        "guardianAddress": { "type": "string", "description": "Community settlement address" },
+        "emergencyContact": { "type": "string", "description": "Emergency contact number" },
+        "bloodGroup": { "type": "string", "description": "Blood group optional" },
+        "previousSchool": { "type": "string", "description": "Previous educational background" },
+        "status": { "type": "string", "enum": ["Active", "Archived", "Transferred"], "description": "Enrollment status" },
+        "notes": { "type": "string", "description": "Teacher/Admin notes regarding special care" },
+        "createdAt": { "type": "string", "description": "Record creation timestamp" }
+      },
+      "required": ["studentId", "fullName", "class", "guardianName", "status"]
+    },
+    "SchoolClass": {
+      "title": "SchoolClass",
+      "description": "Class definition from Class 1 through Class 5",
+      "type": "object",
+      "properties": {
+        "classId": { "type": "string", "description": "Class identifier e.g. class-1" },
+        "name": { "type": "string", "description": "Class 1, Class 2, etc." },
+        "gradeLevel": { "type": "string", "description": "Grade 1-5" },
+        "assignedTeacher": { "type": "string", "description": "Class teacher name" },
+        "assignedTeacherId": { "type": "string", "description": "Class teacher ID" },
+        "room": { "type": "string", "description": "Classroom designation" },
+        "capacity": { "type": "string", "description": "Max capacity" },
+        "sections": { "type": "string", "description": "Available sections e.g. A, B" },
+        "description": { "type": "string", "description": "Focus curriculum and age group" }
+      },
+      "required": ["classId", "name", "gradeLevel"]
+    },
+    "AttendanceRecord": {
+      "title": "AttendanceRecord",
+      "description": "Daily attendance for a student",
+      "type": "object",
+      "properties": {
+        "date": { "type": "string", "description": "YYYY-MM-DD" },
+        "class": { "type": "string", "description": "Class 1 to Class 5" },
+        "studentId": { "type": "string", "description": "Student unique ID" },
+        "studentName": { "type": "string", "description": "Student name" },
+        "status": { "type": "string", "enum": ["Present", "Absent", "Late", "Leave"], "description": "Attendance status" },
+        "remark": { "type": "string", "description": "Optional reason e.g. sick" },
+        "markedBy": { "type": "string", "description": "Teacher/Admin ID who recorded" },
+        "createdAt": { "type": "string", "description": "Timestamp" }
+      },
+      "required": ["date", "class", "studentId", "status"]
+    },
+    "AcademicRecord": {
+      "title": "AcademicRecord",
+      "description": "Student examination and assessment result",
+      "type": "object",
+      "properties": {
+        "studentId": { "type": "string", "description": "Student ID" },
+        "studentName": { "type": "string", "description": "Student Name" },
+        "class": { "type": "string", "description": "Class level" },
+        "subject": { "type": "string", "description": "Bangla, English, Math, Science, General Knowledge" },
+        "examType": { "type": "string", "enum": ["First Term", "Mid Term", "Final Term", "Monthly Test", "Weekly Quiz"], "description": "Assessment type" },
+        "marks": { "type": "string", "description": "Numeric marks obtained" },
+        "maxMarks": { "type": "string", "description": "Max achievable marks" },
+        "grade": { "type": "string", "description": "Letter grade A+, A, B, etc." },
+        "remarks": { "type": "string", "description": "Teacher remarks and encouragement" },
+        "recordedBy": { "type": "string", "description": "Teacher/Admin who recorded" },
+        "date": { "type": "string", "description": "Exam date" }
+      },
+      "required": ["studentId", "class", "subject", "examType", "marks"]
+    },
+    "Book": {
+      "title": "Book",
+      "description": "Book or textbook in school library collection",
+      "type": "object",
+      "properties": {
+        "bookId": { "type": "string", "description": "Book identifier e.g. BK-101" },
+        "name": { "type": "string", "description": "Title of the book" },
+        "author": { "type": "string", "description": "Author name" },
+        "category": { "type": "string", "description": "Story, Textbook, Science, Moral Education, Rhymes" },
+        "class": { "type": "string", "description": "Target class or All" },
+        "quantity": { "type": "string", "description": "Total count" },
+        "availableQuantity": { "type": "string", "description": "Available count" },
+        "description": { "type": "string", "description": "Summary" },
+        "coverUrl": { "type": "string", "description": "Cover picture" }
+      },
+      "required": ["bookId", "name", "category"]
+    },
+    "StudyMaterial": {
+      "title": "StudyMaterial",
+      "description": "Worksheets, lesson sheets, and learning resources uploaded by teachers",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Material title" },
+        "description": { "type": "string", "description": "Details about sheet" },
+        "class": { "type": "string", "description": "Class 1 to 5" },
+        "subject": { "type": "string", "description": "Subject" },
+        "teacherName": { "type": "string", "description": "Uploaded by" },
+        "teacherId": { "type": "string", "description": "Teacher ID" },
+        "fileType": { "type": "string", "enum": ["PDF", "Worksheet", "Image", "Notes", "Audio/Story"], "description": "Type of resource" },
+        "fileUrl": { "type": "string", "description": "Storage or resource link" },
+        "uploadDate": { "type": "string", "description": "Date uploaded" }
+      },
+      "required": ["title", "class", "subject", "teacherName"]
+    },
+    "Donation": {
+      "title": "Donation",
+      "description": "Strictly private donation records accessible only to Main Admin",
+      "type": "object",
+      "properties": {
+        "donorName": { "type": "string", "description": "Donor name or Anonymous" },
+        "donorEmail": { "type": "string", "description": "Donor email" },
+        "donorPhone": { "type": "string", "description": "Donor phone" },
+        "amount": { "type": "string", "description": "Donation amount in BDT" },
+        "paymentMethod": { "type": "string", "enum": ["bKash", "Nagad", "Bank Transfer", "Cash", "Card"], "description": "Method of payment" },
+        "transactionId": { "type": "string", "description": "TrxID / Reference" },
+        "message": { "type": "string", "description": "Donor message of blessing" },
+        "status": { "type": "string", "enum": ["Verified", "Pending", "Cancelled"], "description": "Verification status" },
+        "isAnonymous": { "type": "string", "description": "Whether to hide name on internal thank-yous" },
+        "date": { "type": "string", "description": "Date of transaction" },
+        "createdAt": { "type": "string", "description": "Creation timestamp" }
+      },
+      "required": ["amount", "paymentMethod", "status", "date"]
+    },
+    "FinancialTransaction": {
+      "title": "FinancialTransaction",
+      "description": "Strictly private income and expense ledger records accessible only to Main Admin",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["income", "expense"], "description": "Ledger entry type" },
+        "category": { "type": "string", "description": "Category e.g. Rent, Books, Food, Volunteer Contribution, Online Donation" },
+        "description": { "type": "string", "description": "Detailed explanation" },
+        "amount": { "type": "string", "description": "Amount in BDT" },
+        "paymentMethod": { "type": "string", "description": "bKash, Cash, Bank, etc." },
+        "reference": { "type": "string", "description": "Voucher or Receipt No." },
+        "date": { "type": "string", "description": "Date of expenditure or receipt" },
+        "recordedBy": { "type": "string", "description": "Admin user who logged transaction" },
+        "notes": { "type": "string", "description": "Additional notes" }
+      },
+      "required": ["type", "category", "amount", "date"]
+    },
+    "Announcement": {
+      "title": "Announcement",
+      "description": "Internal and public school announcements and notices",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Notice headline" },
+        "content": { "type": "string", "description": "Full notice text" },
+        "target": { "type": "string", "enum": ["All", "Teachers", "Public", "Class 1", "Class 2", "Class 3", "Class 4", "Class 5"], "description": "Intended audience" },
+        "published": { "type": "string", "description": "true or false" },
+        "author": { "type": "string", "description": "Admin or Head Volunteer" },
+        "date": { "type": "string", "description": "Notice date" }
+      },
+      "required": ["title", "content", "target", "date"]
+    },
+    "Event": {
+      "title": "Event",
+      "description": "School events such as Book Distribution, Art Day, Sports Day, Medical Camp",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Event name" },
+        "description": { "type": "string", "description": "Details about event" },
+        "date": { "type": "string", "description": "Event date" },
+        "time": { "type": "string", "description": "Event timing" },
+        "location": { "type": "string", "description": "Venue" },
+        "coverUrl": { "type": "string", "description": "Image url" },
+        "published": { "type": "string", "description": "true or false" }
+      },
+      "required": ["title", "description", "date", "location"]
+    },
+    "NewsArticle": {
+      "title": "NewsArticle",
+      "description": "School news and updates published for community and supporters",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Article headline" },
+        "summary": { "type": "string", "description": "Short excerpt" },
+        "content": { "type": "string", "description": "Full story" },
+        "date": { "type": "string", "description": "Publication date" },
+        "coverUrl": { "type": "string", "description": "Image url" },
+        "published": { "type": "string", "description": "true or false" }
+      },
+      "required": ["title", "summary", "content", "date"]
+    },
+    "GalleryItem": {
+      "title": "GalleryItem",
+      "description": "Curated photos of school activities, classes, and celebrations",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Photo title" },
+        "caption": { "type": "string", "description": "Respectful caption" },
+        "imageUrl": { "type": "string", "description": "Image URL" },
+        "category": { "type": "string", "description": "Classroom, Sports, Art, Celebration, Campus" },
+        "date": { "type": "string", "description": "Date taken" },
+        "isFeatured": { "type": "string", "description": "true or false" }
+      },
+      "required": ["title", "imageUrl", "category"]
+    },
+    "ContactMessage": {
+      "title": "ContactMessage",
+      "description": "Messages from public visitors and supporters",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Sender name" },
+        "email": { "type": "string", "description": "Sender email" },
+        "phone": { "type": "string", "description": "Sender phone" },
+        "subject": { "type": "string", "description": "Message subject" },
+        "message": { "type": "string", "description": "Message body" },
+        "status": { "type": "string", "enum": ["Unread", "Read", "Replied"], "description": "Status" },
+        "createdAt": { "type": "string", "description": "Timestamp" }
+      },
+      "required": ["name", "email", "message"]
+    },
+    "AuditLog": {
+      "title": "AuditLog",
+      "description": "Admin action audit trail for accountability and transparency",
+      "type": "object",
+      "properties": {
+        "action": { "type": "string", "description": "Action performed" },
+        "category": { "type": "string", "description": "Students, Teachers, Finance, Settings, Attendance" },
+        "performedBy": { "type": "string", "description": "Name/Email of user" },
+        "role": { "type": "string", "description": "admin or teacher" },
+        "details": { "type": "string", "description": "Summary of change" },
+        "timestamp": { "type": "string", "description": "ISO timestamp" }
+      },
+      "required": ["action", "category", "performedBy", "timestamp"]
+    },
+    "SchoolSetting": {
+      "title": "SchoolSetting",
+      "description": "School configuration, contact details, payment setup, and homepage stats",
+      "type": "object",
+      "properties": {
+        "schoolName": { "type": "string", "description": "Priyoful" },
+        "tagline": { "type": "string", "description": "Give Every Child a Chance to Learn" },
+        "phone": { "type": "string", "description": "Primary phone" },
+        "email": { "type": "string", "description": "Official email" },
+        "address": { "type": "string", "description": "School physical address in settlement" },
+        "bKashNumber": { "type": "string", "description": "bKash Merchant/Personal Number" },
+        "nagadNumber": { "type": "string", "description": "Nagad Number" },
+        "bankDetails": { "type": "string", "description": "Bank account information" },
+        "activeAcademicYear": { "type": "string", "description": "e.g. 2026" },
+        "aboutMission": { "type": "string", "description": "Mission statement text" },
+        "aboutVision": { "type": "string", "description": "Vision statement text" }
+      },
+      "required": ["schoolName", "tagline"]
+    }
+  },
+  "firestore": {
+    "/admins/{adminId}": {
+      "schema": "Admin",
+      "description": "Admin profiles and role authorization"
+    },
+    "/teachers/{teacherId}": {
+      "schema": "Teacher",
+      "description": "Teacher profiles and assignments"
+    },
+    "/students/{studentId}": {
+      "schema": "Student",
+      "description": "Student records (protected: admin and authorized teachers only)"
+    },
+    "/classes/{classId}": {
+      "schema": "SchoolClass",
+      "description": "Classes 1 to 5"
+    },
+    "/attendance/{attendanceId}": {
+      "schema": "AttendanceRecord",
+      "description": "Daily student attendance"
+    },
+    "/academicRecords/{recordId}": {
+      "schema": "AcademicRecord",
+      "description": "Exam results and teacher remarks"
+    },
+    "/books/{bookId}": {
+      "schema": "Book",
+      "description": "Library and textbook inventory"
+    },
+    "/materials/{materialId}": {
+      "schema": "StudyMaterial",
+      "description": "Study sheets and worksheets"
+    },
+    "/donations/{donationId}": {
+      "schema": "Donation",
+      "description": "STRICTLY PRIVATE: Donation records accessible only to Main Admin"
+    },
+    "/financial/{financialId}": {
+      "schema": "FinancialTransaction",
+      "description": "STRICTLY PRIVATE: School income & expenses accessible only to Main Admin"
+    },
+    "/announcements/{announcementId}": {
+      "schema": "Announcement",
+      "description": "School notices and circulars"
+    },
+    "/events/{eventId}": {
+      "schema": "Event",
+      "description": "Public school events"
+    },
+    "/news/{newsId}": {
+      "schema": "NewsArticle",
+      "description": "Public school news articles"
+    },
+    "/gallery/{galleryId}": {
+      "schema": "GalleryItem",
+      "description": "Curated photo gallery"
+    },
+    "/contactMessages/{messageId}": {
+      "schema": "ContactMessage",
+      "description": "Inquiries from public contact form (accessible only to Main Admin)"
+    },
+    "/auditLogs/{logId}": {
+      "schema": "AuditLog",
+      "description": "Administrative audit trail"
+    },
+    "/settings/{settingId}": {
+      "schema": "SchoolSetting",
+      "description": "Public and administrative school settings"
+    }
+  }
+}
