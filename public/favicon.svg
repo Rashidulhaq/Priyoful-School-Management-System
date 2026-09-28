@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="100%" height="100%">
+  <defs>
+    <!-- Background rounded squircle gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="50%" stop-color="#F97316" />
+      <stop offset="100%" stop-color="#E11D48" />
+    </linearGradient>
+
+    <!-- Petal Golden Warm Gradient -->
+    <linearGradient id="petalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FEF08A" />
+      <stop offset="40%" stop-color="#FBBF24" />
+      <stop offset="100%" stop-color="#EA580C" />
+    </linearGradient>
+
+    <!-- Flower Center Disc Gradient -->
+    <radialGradient id="centerGrad" cx="45%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#78350F" />
+      <stop offset="70%" stop-color="#451A03" />
+      <stop offset="100%" stop-color="#260D02" />
+    </radialGradient>
+
+    <!-- Center Glow Ring -->
+    <radialGradient id="glowRing" cx="50%" cy="50%" r="50%">
+      <stop offset="75%" stop-color="transparent" />
+      <stop offset="95%" stop-color="#F59E0B" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#FBBF24" stop-opacity="1" />
+    </radialGradient>
+
+    <!-- Leaf Gradient -->
+    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <!-- Background Squircle / Shield for High Visibility on Any Tab Theme (Dark / Light) -->
+  <rect x="6" y="6" width="116" height="116" rx="30" fill="url(#bgGrad)" filter="url(#shadow)" />
+  
+  <!-- Inner White Card Circle for Supreme Contrast -->
+  <circle cx="64" cy="64" r="50" fill="#FFFFFF" opacity="0.96" />
+
+  <!-- Little fresh green leaf peeking behind flower -->
+  <path d="M72 82 C88 92 98 84 96 70 C84 72 76 76 72 82 Z" fill="url(#leafGrad)" />
+  <path d="M74 81 Q86 78 94 72" stroke="#A7F3D0" stroke-width="1.5" stroke-linecap="round" fill="none" />
+
+  <!-- 12 Radiating Flower Petals (Sunflower / প্রিয়ফুল) -->
+  <g id="petals" transform="translate(64,64)">
+    <!-- 0 deg -->
+    <path d="M-6 -22 C-10 -35 -7 -44 0 -48 C7 -44 10 -35 6 -22 Z" fill="url(#petalGrad)" />
+    <!-- 30 deg -->
+    <path d="M-6 -22 C-10 -35 -7 -44 0 -48 C7 -44 10 -35 6 -22 Z" fill="url(#petalGrad)" transform="rotate(30)" />
+    <!-- 60 deg -->
+    <path d="M-6 -22 C-10 -35 -7 -44 0 -48 C7 -44 10 -35 6 -22 Z" fill="url(#petalGrad)" transform="rotate(60)" />
+    <!-- 90 deg -->
+    <path d="M-6 -22 C-10 -35 -7 -44 0 -48 C7 -44 10 -35 6 -22 Z" fill="url(#petalGrad)" transform="rotate(90)" />
+    <!-- 120 deg -->
+    <path d="M-6 -22 C-10 -35 -7 -44 0 -48 C7 -44 10 -35 6 -22 Z" fill="url(#petalGrad)" transform="rotate(120)" />
+    <!-- 150 deg -->
+    <path d="M-6 -22 C-10 -35 -7 -44 0 -48 C7 -44 10 -35 6 -22 Z" fill="url(#petalGrad)" transform="rotate(150)" />
+    <!-- 180 deg -->
+    <path d="M-6 -22 C-10 -35 -7 -44 0 -48 C7 -44 10 -35 6 -22 Z" fill="url(#petalGrad)" transform="rotate(180)" />
+    <!-- 210 deg -->
+    <path d="M-6 -22 C-10 -35 -7 -44 0 -48 C7 -44 10 -35 6 -22 Z" fill="url(#petalGrad)" transform="rotate(210)" />
+    <!-- 240 deg -->
+    <path d="M-6 -22 C-10 -35 -7 -44 0 -48 C7 -44 10 -35 6 -22 Z" fill="url(#petalGrad)" transform="rotate(240)" />
+    <!-- 270 deg -->
+    <path d="M-6 -22 C-10 -35 -7 -44 0 -48 C7 -44 10 -35 6 -22 Z" fill="url(#petalGrad)" transform="rotate(270)" />
+    <!-- 300 deg -->
+    <path d="M-6 -22 C-10 -35 -7 -44 0 -48 C7 -44 10 -35 6 -22 Z" fill="url(#petalGrad)" transform="rotate(300)" />
+    <!-- 330 deg -->
+    <path d="M-6 -22 C-10 -35 -7 -44 0 -48 C7 -44 10 -35 6 -22 Z" fill="url(#petalGrad)" transform="rotate(330)" />
+    
+    <!-- Flower Central Seed Disc -->
+    <circle cx="0" cy="0" r="21" fill="url(#centerGrad)" stroke="#F59E0B" stroke-width="1.8" />
+    <circle cx="0" cy="0" r="21" fill="url(#glowRing)" />
+
+    <!-- Cute Smiling Happy Face / Seed Texture Accent -->
+    <!-- Eyes -->
+    <circle cx="-6.5" cy="-3.5" r="2.2" fill="#FEF08A" />
+    <circle cx="6.5" cy="-3.5" r="2.2" fill="#FEF08A" />
+    <!-- Eye Sparkles -->
+    <circle cx="-5.8" cy="-4.2" r="0.8" fill="#FFFFFF" />
+    <circle cx="7.2" cy="-4.2" r="0.8" fill="#FFFFFF" />
+    <!-- Gentle Smile -->
+    <path d="M-5.5 4 Q0 9 5.5 4" stroke="#FDE047" stroke-width="1.8" stroke-linecap="round" fill="none" />
+    <!-- Cheeks -->
+    <circle cx="-11" cy="2" r="2" fill="#F43F5E" opacity="0.6" />
+    <circle cx="11" cy="2" r="2" fill="#F43F5E" opacity="0.6" />
+  </g>
+
+  <!-- Little Sparkle at Top-Right Corner -->
+  <path d="M102 24 Q102 32 110 32 Q102 32 102 40 Q102 32 94 32 Q102 32 102 24 Z" fill="#FEF08A" />
+</svg>
