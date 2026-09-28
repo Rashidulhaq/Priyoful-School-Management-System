@@ -30,7 +30,6 @@ export const PublicHome: React.FC = () => {
   const { settings, stats, classes, events, news, gallery, setActiveTab, setSelectedClassForDetail } = useSchool();
   const [quizAnswered, setQuizAnswered] = useState<number | null>(null);
   const [selectedDreamCategory, setSelectedDreamCategory] = useState<'all' | 'doctor' | 'teacher' | 'artist' | 'engineer'>('all');
-  const [heroBgMode, setHeroBgMode] = useState<'cinematic' | 'vivid'>('cinematic');
 
   const handleNav = (tab: string, className?: string) => {
     if (className) {
@@ -138,195 +137,144 @@ export const PublicHome: React.FC = () => {
   return (
     <div className="space-y-20 pb-20 overflow-hidden">
       
-      {/* 1. HERO SECTION: SUPER EYE-CATCHING REAL PHOTO HERO WITH ATMOSPHERIC BLEND */}
-      <section className="relative overflow-hidden pt-8 pb-16 lg:py-24">
+      {/* 1. HERO SECTION: WORLD-CLASS PROFESSIONAL INSTITUTIONAL HERO */}
+      <section className="relative overflow-hidden pt-6 pb-14 lg:pt-12 lg:pb-20">
         
-        {/* Real School Community Photo Background with Soft Dreamy Aesthetic */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
-          <img
-            src="/pic1.jpg"
-            alt="Priyoful School Mural & Students Wall"
-            className={`w-full h-full object-cover object-center transition-all duration-700 ease-out ${
-              heroBgMode === 'vivid'
-                ? 'opacity-85 lg:opacity-90 scale-100 filter brightness-100 contrast-105'
-                : 'opacity-65 lg:opacity-75 scale-102 filter blur-[1.5px] brightness-95 contrast-105'
-            }`}
-            referrerPolicy="no-referrer"
-          />
-          {/* Subtle translucent veil that lets pic1 shine through while ensuring readability */}
-          <div className={`absolute inset-0 transition-colors duration-700 ${
-            heroBgMode === 'vivid'
-              ? 'bg-linear-to-r from-amber-50/65 via-white/35 to-transparent'
-              : 'bg-linear-to-r from-amber-50/70 via-white/40 to-amber-50/20'
-          }`} />
-          {/* Bottom fade into the page */}
-          <div className="absolute inset-x-0 bottom-0 h-28 bg-linear-to-t from-white via-white/80 to-transparent" />
-          <div className="absolute inset-x-0 top-0 h-16 bg-linear-to-b from-white/40 to-transparent" />
-        </div>
-
-        {/* Playful Floating Ambient Glows */}
-        <div className="absolute top-10 left-6 w-48 h-48 bg-amber-400/20 rounded-full blur-3xl pointer-events-none animate-pulse" />
-        <div className="absolute top-28 right-12 w-80 h-80 bg-rose-400/15 rounded-full blur-3xl pointer-events-none animate-float-slow" />
-        <div className="absolute bottom-6 left-1/3 w-72 h-72 bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
+        {/* Soft Ambient Warm Glows (Clean & Unobtrusive) */}
+        <div className="absolute inset-0 bg-linear-to-b from-amber-50/40 via-white to-amber-50/20 -z-10" />
+        <div className="absolute top-10 right-10 w-96 h-96 bg-amber-200/25 rounded-full blur-3xl pointer-events-none -z-10" />
+        <div className="absolute bottom-10 left-10 w-80 h-80 bg-rose-200/15 rounded-full blur-3xl pointer-events-none -z-10" />
 
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             
-            {/* Left Column: Heading & Child-Centered Heart with Frosted Glass Container */}
-            <div className="lg:col-span-7 space-y-6 text-center lg:text-left p-6 sm:p-8 lg:p-9 rounded-3xl bg-white/85 backdrop-blur-md border border-white/70 shadow-xl shadow-amber-950/5 transition-all duration-300">
+            {/* Left Column: Authoritative, Inspiring Narrative */}
+            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
               
-              {/* Cute Badges with Background Style Selector */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-linear-to-r from-amber-200 via-orange-200 to-rose-200 border border-amber-300 text-slate-800 text-xs sm:text-sm font-extrabold shadow-sm transform hover:scale-105 transition-transform cursor-default">
-                  <span className="text-lg">🌸</span>
-                  <span>প্রিয়ফুল পাঠশালা • ছোটদের আনন্দের ভুবন</span>
-                  <span className="text-amber-700 font-bold">•</span>
-                  <span className="bg-white/80 px-2 py-0.5 rounded-full text-rose-700 text-xs">Class 1 to 5</span>
-                </div>
-
-                {/* Interactive Background View Mode Toggle for User Review */}
-                <button
-                  onClick={() => setHeroBgMode(heroBgMode === 'cinematic' ? 'vivid' : 'cinematic')}
-                  title="ব্যাকগ্রাউন্ড ছবির লুক পরিবর্তন করে দেখুন"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 hover:bg-white text-slate-800 border border-amber-300 shadow-xs text-xs font-bold transition-all hover:scale-105 active:scale-95 cursor-pointer"
-                >
-                  <span>🖼️</span>
-                  <span>ব্যাকগ্রাউন্ড:</span>
-                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-black ${
-                    heroBgMode === 'cinematic'
-                      ? 'bg-amber-400 text-slate-900'
-                      : 'bg-emerald-500 text-white'
-                  }`}>
-                    {heroBgMode === 'cinematic' ? 'হালকা আবছা লুক ✦' : 'সম্পূর্ণ স্পষ্ট'}
-                  </span>
-                </button>
+              {/* Trust Kicker */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/80 border border-amber-300/80 text-amber-950 text-xs sm:text-sm font-bold shadow-xs">
+                <span className="w-2 h-2 rounded-full bg-amber-600 animate-pulse" />
+                <span>QSP ফাউন্ডেশন পরিচালিত অলাভজনক মানবিক শিক্ষা প্রকল্প</span>
+                <span className="text-amber-400">·</span>
+                <span className="text-slate-600 font-semibold">মিরপুর, ঢাকা</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.12] font-outfit">
-                ভালোবাসা ও শিক্ষায় আলোকিত হোক প্রতিটি{' '}
-                <span className="relative whitespace-nowrap text-transparent bg-clip-text bg-linear-to-r from-amber-500 via-orange-500 to-rose-500">
-                  ছোট্ট স্বপ্ন
-                  <span className="absolute left-0 -bottom-2 w-full h-3 bg-amber-300/70 rounded-full -z-10 transform -rotate-1"></span>
+              {/* Dignified & Powerful Headline */}
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.15] font-outfit">
+                ভালোবাসা ও শিক্ষার আলোয় গড়ে উঠুক প্রতিটি{' '}
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-amber-600 via-orange-600 to-rose-600">
+                  সুবিধাবঞ্চিত শিশুর স্বপ্ন
                 </span>
-                {' '}🌻
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-700 leading-relaxed font-medium max-w-2xl mx-auto lg:mx-0">
-                মিরপুরের সুবিধাবঞ্চিত বস্তির শিশুদের জন্য সম্পূর্ণ অবৈতনিক প্রাথমিক বিদ্যালয়। এখানে প্রতিটি শিশু পায় বিনামূল্যে নতুন বই, খাতা-কলম, পুষ্টিকর খাবার, মমতাময়ী শিক্ষক এবং হাসিমুখে বড় হওয়ার অবারিত সুযোগ।
+              {/* Mission Narrative */}
+              <p className="text-base sm:text-lg text-slate-700 leading-relaxed font-normal max-w-2xl mx-auto lg:mx-0">
+                মিরপুরের নিম্নআয়ের বস্তি পরিবারের সন্তানদের জন্য সম্পূর্ণ অবৈতনিক প্রাথমিক পাঠশালা। নতুন পাঠ্যবই, প্রতিদিনের পুষ্টিকর সকালের নাস্তা, উন্নত ক্লাসরুম ও নিবেদিতপ্রাণ শিক্ষকবৃন্দের স্নেহপূর্ণ তত্ত্বাবধানে আমরা প্রতিটি শিশুর সম্ভাবনাময় শৈশব গড়ে তুলছি।
               </p>
 
-              {/* CTAs with Playful Styling & Confetti micro-interaction */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3.5 pt-1">
                 <button
                   onClick={() => {
                     confetti({
-                      particleCount: 40,
-                      spread: 60,
+                      particleCount: 35,
+                      spread: 55,
                       origin: { y: 0.6 },
                       colors: ['#f59e0b', '#f43f5e', '#10b981'],
                     });
-                    setTimeout(() => handleNav('donate'), 250);
+                    setTimeout(() => handleNav('donate'), 200);
                   }}
-                  className="px-8 py-4 rounded-full bg-linear-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 text-white font-black text-base shadow-xl shadow-orange-500/30 hover:shadow-2xl hover:shadow-orange-500/40 transition-all flex items-center gap-3 active:scale-95 group cursor-pointer animate-pulse-glow"
+                  className="px-7 py-4 rounded-xl bg-linear-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 text-white font-black text-sm sm:text-base shadow-lg shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/35 transition-all flex items-center justify-center gap-2.5 active:scale-95 group cursor-pointer"
                 >
-                  <Heart className="w-5 h-5 fill-white group-hover:scale-125 transition-transform animate-heartbeat" />
-                  <span>একটি শিশুর মুখে হাসি ফোটান (Donate)</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+                  <Heart className="w-5 h-5 fill-white group-hover:scale-115 transition-transform" />
+                  <span>একটি শিশুর পাশে দাঁড়ান (Donate)</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
 
                 <button
                   onClick={() => handleNav('about')}
-                  className="px-7 py-4 rounded-full bg-white hover:bg-amber-50/90 border-2 border-amber-300 text-slate-800 font-extrabold text-base shadow-sm hover:border-amber-400 hover:shadow-md transition-all flex items-center gap-2 group cursor-pointer"
+                  className="px-6 py-4 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-bold text-sm sm:text-base shadow-xs hover:border-amber-400 hover:text-amber-800 transition-all flex items-center justify-center gap-2 group cursor-pointer active:scale-95"
                 >
-                  <span className="text-xl group-hover:rotate-12 transition-transform">📖</span>
-                  <span>আমাদের গল্প ও স্বপ্ন</span>
+                  <BookOpen className="w-4 h-4 text-amber-600" />
+                  <span>আমাদের ক্লাসরুম ও গল্প জানুন</span>
                 </button>
               </div>
 
-              {/* Child-Friendly Highlights Badges */}
-              <div className="pt-6 border-t border-amber-200/60 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
-                <div className="flex items-center gap-2 bg-white/90 p-2.5 rounded-2xl border border-amber-200/80 shadow-xs hover:border-amber-400 hover:shadow-md transition-all">
-                  <span className="text-lg">🎒</span>
-                  <span className="font-bold text-slate-800">১০০% বিনামূল্যে বই-খাতা</span>
+              {/* 4-Point Transparency & Impact Ribbon */}
+              <div className="pt-6 border-t border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
+                <div className="p-3 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                  <div className="text-base mb-1">🎒</div>
+                  <strong className="text-xs font-black text-slate-900 block">১০০% ফ্রি বই-খাতা</strong>
+                  <span className="text-[11px] text-slate-500">বই, ব্যাগ ও স্টেশনারি</span>
                 </div>
-                <div className="flex items-center gap-2 bg-white/90 p-2.5 rounded-2xl border border-amber-200/80 shadow-xs hover:border-amber-400 hover:shadow-md transition-all">
-                  <span className="text-lg">🥛</span>
-                  <span className="font-bold text-slate-800">প্রতিদিনের পুষ্টিকর নাস্তা</span>
+                <div className="p-3 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                  <div className="text-base mb-1">🥛</div>
+                  <strong className="text-xs font-black text-slate-900 block">প্রতিদিনের পুষ্টিকর নাস্তা</strong>
+                  <span className="text-[11px] text-slate-500">দুধ, ডিম ও তাজা ফল</span>
                 </div>
-                <div className="flex items-center gap-2 bg-white/90 p-2.5 rounded-2xl border border-amber-200/80 shadow-xs col-span-2 sm:col-span-1 hover:border-amber-400 hover:shadow-md transition-all">
-                  <span className="text-lg">💖</span>
-                  <span className="font-bold text-slate-800">মমতাময়ী স্বেচ্ছাসেবী শিক্ষক</span>
+                <div className="p-3 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                  <div className="text-base mb-1">👩‍🏫</div>
+                  <strong className="text-xs font-black text-slate-900 block">নিবেদিত শিক্ষক দল</strong>
+                  <span className="text-[11px] text-slate-500">৪০+ মেন্টর ও তরুণ দল</span>
+                </div>
+                <div className="p-3 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+                  <div className="text-base mb-1">🛡️</div>
+                  <strong className="text-xs font-black text-slate-900 block">স্বচ্ছ ব্যবস্থাপনা</strong>
+                  <span className="text-[11px] text-slate-500">১০০% অর্থ শিশুদের জন্য</span>
                 </div>
               </div>
 
             </div>
 
-            {/* Right Column: Hero Visual Card with Real Mural & Community Photo */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative mx-auto max-w-md lg:max-w-none">
+            {/* Right Column: High-Fidelity Authentic Photography Showcase */}
+            <div className="lg:col-span-5">
+              <div className="relative mx-auto max-w-lg lg:max-w-none">
                 
-                {/* Main Card with 3D hover */}
-                <div className="card-hover-3d rounded-[2.5rem] p-4 bg-white shadow-2xl shadow-amber-900/15 border-2 border-amber-200 transform -rotate-1 hover:rotate-0 transition-all duration-300 relative group">
+                {/* Clean, Elegant Main Frame */}
+                <div className="rounded-3xl overflow-hidden bg-white border border-slate-200/90 shadow-2xl shadow-slate-900/10 transition-all duration-300">
                   
-                  {/* Cute Top Pin Sticker */}
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-linear-to-r from-rose-500 to-amber-500 text-white font-black text-[11px] px-4 py-1.5 rounded-full shadow-md z-20 flex items-center gap-1.5 animate-pulse whitespace-nowrap">
-                    <span>✨</span>
-                    <span>প্রিয়ফুল পাঠশালা • আসল ক্লাসরুম ও দেওয়ালচিত্র</span>
-                  </div>
-
-                  <div className="relative rounded-[2rem] overflow-hidden aspect-4/3 shadow-inner">
+                  {/* Photo Display */}
+                  <div className="relative aspect-4/3 bg-slate-100 overflow-hidden group">
                     <img
                       src="/pic2.jpg"
                       alt="Priyoful School Students Classroom with QSP Foundation"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-slate-950/90 via-slate-950/20 to-transparent flex items-end p-5">
+
+                    {/* Gradient Overlay for Caption */}
+                    <div className="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/20 to-transparent flex items-end p-5 sm:p-6">
                       <div className="text-white">
-                        <span className="bg-amber-400 text-slate-950 font-black text-xs px-3 py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1 shadow-sm">
-                          <span className="animate-spin-slow">🌻</span>
-                          <span>শ্রেণিকক্ষে আনন্দের পাঠদান • প্রিয়ফুল</span>
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-amber-400 text-slate-950 text-xs font-black uppercase tracking-wider mb-2">
+                          <span>🌻</span>
+                          <span>প্রিয়ফুল পাঠশালা • ক্লাসরুম পাঠদান</span>
                         </span>
-                        <h3 className="font-black text-lg sm:text-xl text-white mt-2 font-outfit">
-                          পরিচালনায়: QSP ফাউন্ডেশন
+                        <h3 className="font-bold text-lg sm:text-xl text-white font-outfit leading-tight">
+                          শিশুদের আনন্দময় চিত্রকলা ও পাঠদান
                         </h3>
-                        <p className="text-xs text-amber-200 font-medium mt-0.5">
-                          আমাদের শিক্ষক, মেন্টর ও শিশুদের আনন্দঘন মিলনমেলা
+                        <p className="text-xs text-slate-300 mt-1 font-medium">
+                          পরিচালনায়: QSP ফাউন্ডেশন • মিরপুর কমিউনিটি শাখা
                         </p>
                       </div>
                     </div>
                   </div>
 
-                  {/* Colorful Stats Pills inside Card */}
-                  <div className="p-2 grid grid-cols-2 gap-3 mt-3">
-                    <div className="bg-amber-50 rounded-2xl p-3.5 border border-amber-200 text-center hover:bg-amber-100/70 transition-colors">
-                      <span className="text-[11px] font-bold text-amber-700 block">শ্রেণি সংখ্যা</span>
-                      <strong className="text-base font-black text-amber-950">১ম থেকে ৫ম শ্রেণি</strong>
+                  {/* Clean Bottom Metrics Ribbon */}
+                  <div className="p-4 bg-slate-50 border-t border-slate-100 grid grid-cols-3 gap-2 text-center divide-x divide-slate-200">
+                    <div>
+                      <span className="text-[11px] font-semibold text-slate-500 block">শিক্ষার্থী</span>
+                      <strong className="text-sm font-black text-slate-900 font-outfit">১৪৫+ জন</strong>
                     </div>
-                    <div className="bg-rose-50 rounded-2xl p-3.5 border border-rose-200 text-center hover:bg-rose-100/70 transition-colors">
-                      <span className="text-[11px] font-bold text-rose-700 block">স্বেচ্ছাসেবী ও শিক্ষক</span>
-                      <strong className="text-base font-black text-rose-950">৪০+ জন তরুণ</strong>
+                    <div>
+                      <span className="text-[11px] font-semibold text-slate-500 block">শ্রেণি সংখ্যা</span>
+                      <strong className="text-sm font-black text-slate-900 font-outfit">১ম–৫ম শ্রেণি</strong>
+                    </div>
+                    <div>
+                      <span className="text-[11px] font-semibold text-slate-500 block">টিউশন ফি</span>
+                      <strong className="text-sm font-black text-emerald-700 font-outfit">সম্পূর্ণ ফ্রি</strong>
                     </div>
                   </div>
-                </div>
 
-                {/* Floating Badge (Left) - Smooth Floating Animation */}
-                <div className="absolute -bottom-6 -left-6 bg-white rounded-3xl p-4 shadow-xl border-2 border-amber-200 flex items-center gap-3 hidden sm:flex animate-float z-20">
-                  <div className="w-12 h-12 rounded-2xl bg-linear-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white text-2xl shadow-md">
-                    ☀️
-                  </div>
-                  <div>
-                    <span className="text-[11px] text-slate-500 font-bold block">আমাদের শিক্ষার্থী</span>
-                    <strong className="text-base font-black text-slate-900">১৪৫+ ফুলের মতো শিশু</strong>
-                  </div>
-                </div>
-
-                {/* Floating Badge (Right) - Smooth Floating Reverse */}
-                <div className="absolute -top-6 -right-4 bg-white rounded-3xl p-3.5 shadow-xl border-2 border-rose-200 hidden sm:flex items-center gap-2 animate-float-reverse z-20">
-                  <span className="text-2xl animate-sway inline-block">🎈</span>
-                  <div className="text-[11px] font-black text-rose-600">
-                    ১০০% ফ্রি পাঠশালা
-                  </div>
                 </div>
 
               </div>
@@ -949,7 +897,7 @@ export const PublicHome: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
             
             {/* 1. Mahmudul Hasan Bahar Bhai (পরিচালক ও প্রধান স্বপ্নদ্রষ্টা) - Compact & Natural */}
-            <div className="flex items-start gap-4 p-4 rounded-2xl bg-amber-50/50 hover:bg-amber-50/80 border border-amber-200/60 transition-colors">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-3.5 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-amber-50/50 hover:bg-amber-50/80 border border-amber-200/60 transition-colors">
               {/* 100% Accurate Circular Portrait */}
               <div className="shrink-0 relative">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-linear-to-tr from-amber-400 to-orange-400 shadow-sm">
@@ -965,7 +913,7 @@ export const PublicHome: React.FC = () => {
               </div>
 
               <div className="space-y-1.5 flex-1 min-w-0">
-                <div className="flex flex-wrap items-center gap-1.5">
+                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1.5">
                   <h4 className="text-base font-black text-slate-900 leading-tight">
                     মাহমুদুল হাসান বাহার
                   </h4>
@@ -976,14 +924,14 @@ export const PublicHome: React.FC = () => {
                 <p className="text-xs text-slate-500 font-medium">
                   পরিচালক ও প্রধান স্বপ্নদ্রষ্টা • প্রিয়ফুল পাঠশালা (QSP ফাউন্ডেশন)
                 </p>
-                <p className="text-xs text-slate-700 leading-relaxed italic bg-white/80 p-2 rounded-xl border border-amber-200/40">
+                <p className="text-xs text-slate-700 leading-relaxed italic bg-white/80 p-2.5 rounded-xl border border-amber-200/40 text-left">
                   “একটি শিশুও যেন কেবল দারিদ্র্যের কারণে শিক্ষার আলো থেকে বঞ্চিত না হয়—এটাই প্রিয়ফুলের অঙ্গীকার। এটি ভালোবাসা ও স্নেহের নিরাপদ ভুবন।”
                 </p>
               </div>
             </div>
 
             {/* 2. Honorable Patron / Advisor: BUBT VC Sir (Planned Support Slot) - Compact & Natural */}
-            <div className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50/70 hover:bg-slate-50 border border-dashed border-slate-300 transition-colors">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-3.5 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-slate-50/70 hover:bg-slate-50 border border-dashed border-slate-300 transition-colors">
               {/* Circular Avatar Placeholder */}
               <div className="shrink-0">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-0.5 bg-linear-to-tr from-sky-400 to-indigo-400 shadow-sm flex items-center justify-center">
@@ -995,7 +943,7 @@ export const PublicHome: React.FC = () => {
               </div>
 
               <div className="space-y-1.5 flex-1 min-w-0">
-                <div className="flex flex-wrap items-center gap-1.5">
+                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1.5">
                   <h4 className="text-base font-black text-slate-900 leading-tight">
                     উপাচার্য (VC) মহোদয়
                   </h4>
@@ -1006,7 +954,7 @@ export const PublicHome: React.FC = () => {
                 <p className="text-xs text-slate-500 font-medium">
                   বাংলাদেশ ইউনিভার্সিটি অব বিজনেস অ্যান্ড টেকনোলজি (BUBT)
                 </p>
-                <div className="text-xs text-slate-600 leading-relaxed bg-white/80 p-2 rounded-xl border border-slate-200 flex items-center justify-between gap-2">
+                <div className="text-xs text-slate-600 leading-relaxed bg-white/80 p-2.5 rounded-xl border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-2 text-left">
                   <span>উচ্চশিক্ষা সহায়তা ও সামাজিক দিকনির্দেশক হিসেবে পাশে থাকছেন।</span>
                   <span className="shrink-0 text-[10px] font-bold text-sky-600 bg-sky-50 px-2 py-0.5 rounded-full whitespace-nowrap">
                     শীঘ্রই যুক্ত হচ্ছে

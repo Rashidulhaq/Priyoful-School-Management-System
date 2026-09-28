@@ -6,7 +6,6 @@ import { SchoolProvider, useSchool } from './context/SchoolContext';
 // Common
 import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
-import { FloatingPetals } from './components/common/FloatingPetals';
 import { NoticeMarquee } from './components/common/NoticeMarquee';
 
 // Public Pages
@@ -153,7 +152,6 @@ const MainAppContent: React.FC = () => {
   // 3. PUBLIC WEBSITE
   return (
     <div className="min-h-screen flex flex-col justify-between bg-amber-50/20 relative selection:bg-amber-400 selection:text-amber-950">
-      <FloatingPetals />
       <Navbar />
       <NoticeMarquee />
 

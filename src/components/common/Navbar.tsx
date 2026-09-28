@@ -174,22 +174,22 @@ export const Navbar: React.FC = () => {
             onClick={() => handleNavClick('home')}
             className="flex items-center gap-3.5 group text-left transition-transform active:scale-95 cursor-pointer"
           >
-            <div className="relative w-12 h-12 rounded-2xl bg-linear-to-br from-amber-400 via-orange-500 to-rose-500 p-0.5 shadow-md shadow-amber-500/25 group-hover:rotate-12 transition-transform duration-300">
+            <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-linear-to-br from-amber-400 via-orange-500 to-rose-500 p-0.5 shadow-md shadow-amber-500/25 group-hover:rotate-12 transition-transform duration-300 shrink-0">
               <div className="w-full h-full bg-white rounded-[14px] flex items-center justify-center relative overflow-hidden">
-                <span className="text-2xl select-none group-hover:scale-125 transition-transform duration-300" role="img" aria-label="Sunflower flower">🌻</span>
+                <span className="text-xl sm:text-2xl select-none group-hover:scale-125 transition-transform duration-300" role="img" aria-label="Sunflower flower">🌻</span>
                 <span className="absolute inset-0 bg-linear-to-tr from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
               </div>
             </div>
-            <div>
-              <div className="flex items-center gap-1.5">
-                <span className="font-extrabold text-2xl tracking-tight text-slate-900 group-hover:text-amber-600 transition-colors font-outfit">
+            <div className="min-w-0">
+              <div className="flex items-center gap-1.5 flex-wrap sm:flex-nowrap">
+                <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-slate-900 group-hover:text-amber-600 transition-colors font-outfit truncate">
                   {settings.schoolName || 'PRIYOFUL'}
                 </span>
-                <span className="text-xs bg-linear-to-r from-amber-100 to-rose-100 text-amber-900 font-bold px-2 py-0.5 rounded-full border border-amber-200/80 shadow-xs">
+                <span className="text-[11px] sm:text-xs bg-linear-to-r from-amber-100 to-rose-100 text-amber-900 font-bold px-2 py-0.5 rounded-full border border-amber-200/80 shadow-xs shrink-0">
                   প্রিয়ফুল 🌸
                 </span>
               </div>
-              <p className="text-xs text-slate-500 font-bold tracking-wide">
+              <p className="text-[10px] sm:text-xs text-slate-500 font-bold tracking-wide truncate max-w-[180px] sm:max-w-none">
                 কমিউনিটি অবৈতনিক প্রাথমিক পাঠশালা • শ্রেণি ১ম-৫ম
               </p>
             </div>
@@ -225,12 +225,12 @@ export const Navbar: React.FC = () => {
           </nav>
 
           {/* Action CTAs */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-1.5 sm:gap-2.5">
             {/* Direct Dashboard Link if logged in as Admin */}
             {role === 'admin' && (
               <button
                 onClick={() => handleNavClick('admin-dashboard')}
-                className={`hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-black transition-all shadow-xs cursor-pointer ${
+                className={`hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-black transition-all shadow-xs cursor-pointer ${
                   activeTab.startsWith('admin')
                     ? 'bg-slate-900 text-white shadow-slate-900/20'
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
@@ -245,7 +245,7 @@ export const Navbar: React.FC = () => {
             {role === 'teacher' && (
               <button
                 onClick={() => handleNavClick('teacher-dashboard')}
-                className={`hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-black transition-all shadow-xs cursor-pointer ${
+                className={`hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-black transition-all shadow-xs cursor-pointer ${
                   activeTab.startsWith('teacher')
                     ? 'bg-emerald-700 text-white shadow-emerald-700/20'
                     : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100'
@@ -259,9 +259,9 @@ export const Navbar: React.FC = () => {
             {/* Donate CTA Button with Heartbeat & Glow */}
             <button
               onClick={() => handleNavClick('donate')}
-              className="relative overflow-hidden inline-flex items-center gap-2 bg-linear-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 text-white px-5 py-2.5 rounded-full font-black text-sm shadow-md shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/40 transition-all active:scale-95 cursor-pointer animate-pulse-glow group"
+              className="relative overflow-hidden inline-flex items-center gap-1.5 sm:gap-2 bg-linear-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 text-white px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-full font-black text-xs sm:text-sm shadow-md shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/40 transition-all active:scale-95 cursor-pointer animate-pulse-glow group shrink-0"
             >
-              <Heart className="w-4 h-4 fill-white animate-heartbeat" />
+              <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white animate-heartbeat" />
               <span>অনুদান দিন</span>
               <span className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out pointer-events-none" />
             </button>
@@ -269,7 +269,7 @@ export const Navbar: React.FC = () => {
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+              className="xl:hidden p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer shrink-0"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -279,16 +279,16 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Navigation Dropdown */}
         {mobileMenuOpen && (
-          <div className="xl:hidden border-t border-slate-100 bg-white px-4 py-4 space-y-2 shadow-lg animate-in slide-in-from-top-4">
-            <div className="grid grid-cols-2 gap-1.5 pb-2 border-b border-slate-100">
+          <div className="xl:hidden border-t border-slate-100 bg-white px-4 py-4 space-y-3 shadow-2xl animate-in slide-in-from-top-4 max-h-[calc(100vh-80px)] overflow-y-auto">
+            <div className="grid grid-cols-2 gap-2 pb-3 border-b border-slate-100">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`px-3 py-2 text-left text-sm font-semibold rounded-lg ${
+                  className={`px-3 py-2.5 text-left text-sm font-bold rounded-xl transition-all active:scale-95 ${
                     activeTab === item.id
-                      ? 'text-amber-700 bg-amber-50 font-bold'
-                      : 'text-slate-600 hover:bg-slate-50'
+                      ? 'text-amber-900 bg-amber-100/80 font-black shadow-xs'
+                      : 'text-slate-700 hover:bg-slate-50 active:bg-slate-100'
                   }`}
                 >
                   {item.label}
@@ -296,22 +296,22 @@ export const Navbar: React.FC = () => {
               ))}
             </div>
 
-            <div className="pt-2 flex flex-col gap-2">
+            <div className="pt-1 flex flex-col gap-2">
               {role === 'admin' ? (
                 <button
                   onClick={() => handleNavClick('admin-dashboard')}
-                  className="w-full py-2.5 px-4 bg-slate-900 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2"
+                  className="w-full py-3 px-4 bg-slate-900 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 active:scale-95"
                 >
                   <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                  Open Main Admin Panel
+                  <span>প্রধান অ্যাডমিন প্যানেল খুলুন</span>
                 </button>
               ) : role === 'teacher' ? (
                 <button
                   onClick={() => handleNavClick('teacher-dashboard')}
-                  className="w-full py-2.5 px-4 bg-emerald-700 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2"
+                  className="w-full py-3 px-4 bg-emerald-700 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 active:scale-95"
                 >
                   <GraduationCap className="w-4 h-4 text-emerald-200" />
-                  Open Teacher Panel
+                  <span>শিক্ষক প্যানেল খুলুন ({teacherProfile?.fullName?.split(' ')[0] || 'শিক্ষক'})</span>
                 </button>
               ) : (
                 <button
@@ -319,10 +319,10 @@ export const Navbar: React.FC = () => {
                     setMobileMenuOpen(false);
                     handleNavClick('donate');
                   }}
-                  className="w-full py-2.5 px-4 bg-linear-to-r from-amber-500 to-rose-500 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2"
+                  className="w-full py-3 px-4 bg-linear-to-r from-amber-500 via-orange-500 to-rose-500 text-white rounded-xl font-black text-sm flex items-center justify-center gap-2 shadow-md active:scale-95"
                 >
                   <Heart className="w-4 h-4 fill-white" />
-                  Support Our Children
+                  <span>একটি শিশুর মুখে হাসি ফোটান (অনুদান দিন)</span>
                 </button>
               )}
             </div>

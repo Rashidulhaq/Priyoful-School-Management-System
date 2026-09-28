@@ -175,7 +175,7 @@ export const PublicDonate: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         
         {/* Left Form: Amount & Details */}
-        <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border-2 border-slate-100 shadow-xl space-y-6">
+        <div className="lg:col-span-7 bg-white rounded-3xl p-4 sm:p-8 border-2 border-slate-100 shadow-xl space-y-6">
           <form onSubmit={handleSubmit} className="space-y-6">
             
             {/* Step 1: Amount Selection */}

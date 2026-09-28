@@ -137,19 +137,19 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Bottom Bar with Discreet Secure Admin/Staff Portal Entry */}
-          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 text-center sm:text-left">
             <p>© {new Date().getFullYear()} প্রিয়ফুল এডুকেশন ফাউন্ডেশন। সর্বস্বত্ব সংরক্ষিত।</p>
             
-            <div className="flex items-center gap-6">
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6">
               <span>মর্যাদা • শিক্ষা • স্বচ্ছতা</span>
-              <span className="text-slate-700">•</span>
-              <span>মিরপুর কমিউনিটি, ঢাকা</span>
-              <span className="text-slate-700">•</span>
+              <span className="text-slate-700 hidden sm:inline">•</span>
+              <span className="hidden sm:inline">মিরপুর কমিউনিটি, ঢাকা</span>
+              <span className="text-slate-700 hidden sm:inline">•</span>
               
               {/* Discreet Secure Admin / Staff Portal Button */}
               <button
                 onClick={() => setLoginModalOpen(true)}
-                className="flex items-center gap-1.5 text-slate-500 hover:text-amber-400 hover:border-slate-600 transition-colors py-1.5 px-3 rounded-xl border border-slate-800 bg-slate-900/90 text-[11px] font-bold shadow-xs"
+                className="flex items-center gap-1.5 text-slate-400 hover:text-amber-400 hover:border-slate-600 transition-colors py-1.5 px-3 rounded-xl border border-slate-800 bg-slate-900/90 text-[11px] font-bold shadow-xs cursor-pointer active:scale-95"
                 title="অনুমোদিত শিক্ষক ও প্রধান অ্যাডমিন লগইন"
               >
                 <Lock className="w-3.5 h-3.5 text-slate-400" />

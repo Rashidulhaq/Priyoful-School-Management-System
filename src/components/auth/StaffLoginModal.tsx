@@ -80,11 +80,11 @@ export const StaffLoginModal: React.FC<StaffLoginModalProps> = ({ isOpen, onClos
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-sm animate-in fade-in">
-      <div className="bg-white rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden border border-slate-100 animate-in zoom-in-95">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/75 backdrop-blur-sm animate-in fade-in overflow-y-auto">
+      <div className="bg-white rounded-3xl shadow-2xl max-w-lg w-full max-h-[92vh] overflow-y-auto border border-slate-100 animate-in zoom-in-95 my-auto">
         
         {/* Modal Header */}
-        <div className="relative bg-linear-to-r from-amber-500 via-orange-500 to-rose-500 p-6 text-white">
+        <div className="relative bg-linear-to-r from-amber-500 via-orange-500 to-rose-500 p-5 sm:p-6 text-white sticky top-0 z-10">
           <button
             onClick={onClose}
             className="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors"

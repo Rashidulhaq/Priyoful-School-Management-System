@@ -2,8 +2,7 @@
 
 @theme {
   --font-outfit: 'Outfit', sans-serif;
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-handwriting: 'Caveat', cursive;
+  --font-sans: 'Hind Siliguri', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 }
 
 body {
